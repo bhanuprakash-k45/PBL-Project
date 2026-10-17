@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163B65">
+  <title>Find halls — CivicSpace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body class="subpage">
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../index.html"><span class="brand-mark">▦</span><span>CivicSpace</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="halls.html" aria-current="page">Find a hall</a>
+        <a href="../index.html#how-it-works">How it works</a>
+        <a href="../index.html#faq">Help</a>
+      </nav>
+      <div class="header-actions"><a class="dashboard-button" href="login.html">Sign in</a><button class="mobile-menu" aria-label="Open navigation" aria-expanded="false">☰</button></div>
+    </div>
+  </header>
+  <main>
+    <section class="listing-page page-width">
+      <div class="listing-heading">
+        <p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p>
+        <h1>Find a hall for your gathering</h1>
+        <p>Browse the sample halls and open a hall's details before continuing to booking.</p>
+      </div>
+    <form class="listing-filters" id="listing-filters">
+      <label>Neighbourhood
+        <select id="filter-area"><option value="">All Pune locations</option><option>Kothrud</option><option>Aundh</option><option>Baner</option></select>
+      </label>
+      <label>Event date
+        <input id="filter-date" type="date">
+      </label>
+      <label>Guests
+        <select id="filter-guests"><option value="">Any group size</option><option value="50">50 guests</option><option value="120">120 guests</option><option value="180">180 guests</option><option value="250">250 guests</option></select>
+      </label>
+      <button class="button button-green" type="submit">Apply filters</button>
+      <button class="button button-outline" type="button" id="clear-filters">Clear</button>
+    </form>
+    <p class="search-feedback" id="listing-feedback" aria-live="polite"></p>
+    <div class="hall-grid listing-grid" id="listing-halls"></div>
+    <p class="sample-note">This page uses three sample halls. The date filter is retained in the URL, but real-time availability checking will be handled by Django.</p>
+  </section>
+  </main>
+  <footer class="site-footer"><div class="page-width"><div class="footer-bottom"><a href="../index.html">← Back to CivicSpace Home</a><span>© 2026 CivicSpace · Sample frontend</span></div></div></footer>
+  <script src="../assets/js/data.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>

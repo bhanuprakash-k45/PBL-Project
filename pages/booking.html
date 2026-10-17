@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Availability | CivicSpace</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/booking.css">
+</head>
+
+<body>
+
+<header class="booking-header">
+    <a href="../index.html" class="booking-logo">
+        <span class="logo-icon">▤</span>
+        <span>CivicSpace</span>
+    </a>
+
+    <nav>
+        <a href="halls.html">Find a hall</a>
+        <a href="#">How it works</a>
+        <a href="#">Smart finder</a>
+        <a href="#">Help</a>
+    </nav>
+
+    <div class="header-right">
+        <a href="my-bookings.html" class="dashboard-btn">My dashboard</a>
+        <div class="user-avatar">AD</div>
+    </div>
+</header>
+
+<main class="booking-page">
+
+    <section class="booking-intro">
+        <p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p>
+
+        <h1>Find your time to gather</h1>
+
+        <p class="intro-description">
+            Sahyadri Community Hall · Kothrud ·
+            Availability shown in Indian Standard Time (IST).
+        </p>
+    </section>
+
+    <!-- Booking progress -->
+    <div class="booking-steps">
+        <span class="step completed">1 · Hall selected</span>
+        <span class="step completed">2 · Check availability</span>
+        <span class="step">3 · Event details</span>
+        <span class="step">4 · Request submitted</span>
+    </div>
+
+    <section class="availability-layout">
+
+        <!-- Calendar -->
+        <div class="calendar-card">
+
+            <h2>Choose an event date</h2>
+
+            <div class="calendar-heading">
+                <h3 id="monthYear">November 2026</h3>
+
+                <div class="month-buttons">
+                    <button id="prevMonth" aria-label="Previous month">
+                        &#8249;
+                    </button>
+
+                    <button id="nextMonth" aria-label="Next month">
+                        &#8250;
+                    </button>
+                </div>
+            </div>
+
+            <div class="calendar-weekdays">
+                <span>Mon</span>
+                <span>Tue</span>
+                <span>Wed</span>
+                <span>Thu</span>
+                <span>Fri</span>
+                <span>Sat</span>
+                <span>Sun</span>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid"></div>
+
+            <div class="calendar-legend">
+                <span class="legend-item">
+                    <span class="legend-dot green"></span>
+                    Selected
+            </span>
+
+                <span class="legend-item">
+                    <span class="legend-dot red"></span>
+            <span id="blockedLegend">20 Nov · blocked</span>
+                </span>
+
+                <span class="timezone-note">All times IST</span>
+            </div>
+
+        </div>
+
+        <!-- Time slots -->
+        <aside class="slots-card">
+
+            <h2 id="selectedDateHeading">Saturday, 21 November</h2>
+
+            <p class="slots-description">
+                Choose a morning or evening slot.
+                Greyed conflicts cannot be booked.
+            </p>
+
+            <div id="timeSlots" class="time-slots"></div>
+
+            <div id="availabilityMessage" class="availability-message">
+                Select a time slot to continue.
+            </div>
+
+            <button id="continueButton" class="continue-button" disabled>
+                Continue
+            </button>
+
+            <button id="waitlistButton" class="waitlist-button" disabled>
+                Join afternoon waitlist
+            </button>
+
+        </aside>
+
+    </section>
+
+    <!-- Selected hall -->
+    <section class="booking-bottom-layout">
+
+        <div class="selected-hall-card">
+
+            <h2>Your selected space</h2>
+
+            <div class="selected-hall">
+
+                <img
+                    src="../assets/images/sahyadri-hall.jpg"
+                    alt="Sahyadri Community Hall"
+                    onerror="this.style.display='none'"
+                >
+
+                <div class="hall-summary">
+
+                    <h3>Sahyadri Community Hall</h3>
+
+                    <p>
+                        180 guests · Step-free access ·
+                        Wi-Fi · Projector
+                    </p>
+
+                    <strong id="rentalSummary">
+                        ₹1,500/hour
+                    </strong>
+
+                    <small>
+                        Extras, taxes and refundable deposit
+                        calculated next.
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Booking rules -->
+        <aside class="booking-rules-card">
+
+            <h2>Booking rules</h2>
+
+            <p>
+                Minimum 2 hours. 30-minute turnover buffer.
+                No overnight events. Dates are bookable
+                up to 90 days ahead.
+            </p>
+
+            <div class="rules-notice">
+                <strong>A date is not a reservation</strong>
+
+                <p>
+                    Your slot is confirmed only after
+                    approval and payment.
+                </p>
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+<footer class="booking-footer">
+
+    <div class="footer-main">
+
+        <div>
+            <h2>▤ CivicSpace</h2>
+            <p>Better spaces. Stronger communities.</p>
+        </div>
+
+        <div>
+            <h3>Explore</h3>
+            <p>Find halls · Smart finder · Accessibility</p>
+        </div>
+
+        <div>
+            <h3>Here to help</h3>
+            <p>support@civicspace.in · 020 4567 8900</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>© 2026 CivicSpace · Pune community hall services</span>
+        <span>Privacy · Terms · Booking policy</span>
+    </div>
+
+</footer>
+
+<script src="../assets/js/booking.js"></script>
+
+</body>
+</html>

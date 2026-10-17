@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163B65">
+  <title>CivicSpace — Pune’s spaces. Your possibilities.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="CivicSpace home"><span class="brand-mark">▦</span><span>CivicSpace</span></a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="pages/halls.html">Find a hall</a>
+        <a href="#how-it-works">How it works</a>
+        <button class="nav-link" data-requires-login="Smart finder">Smart finder</button>
+        <a href="#faq">Help</a>
+      </nav>
+      <div class="header-actions">
+        <button class="dashboard-button" data-requires-login="My dashboard">My dashboard</button>
+        <span class="ad-label" aria-label="Advertisement">AD</span>
+        <button class="mobile-menu" aria-label="Open navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner page-width">
+        <div class="hero-copy">
+          <p class="eyebrow">PUNE’S SPACES. YOUR POSSIBILITIES.</p>
+          <h1>Good gatherings<br>start with a<br>great space.</h1>
+          <p class="hero-description">Find accessible community halls, check real-time availability and plan your next event with confidence.</p>
+          <div class="hero-buttons">
+            <a class="button button-green" href="pages/halls.html"><span aria-hidden="true">↗</span> Explore halls</a>
+            <button class="button button-white" data-requires-login="Smart finder">Try smart finder</button>
+          </div>
+          <div class="hero-stats"><span>12 trusted halls</span><span>1,200+ community events · 4.8/5 rating</span></div>
+        </div>
+        <div class="hero-feature">
+          <img src="assets/images/hero-hall.png" alt="Bright community hall arranged for a gathering">
+          <div class="feature-caption"><span><b>Featured space</b><br>Sahyadri Community Hall · Kothrud</span><strong>From ₹1,500/h</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search strip -->
+    <section class="search-strip" aria-label="Search community halls">
+      <form class="search-form page-width" id="hall-search" action="pages/halls.html" method="get">
+        <label class="search-field"><span>Neighbourhood</span><select id="neighbourhood" name="area"><option value="">All Pune locations</option><option>Kothrud</option><option>Aundh</option><option>Baner</option></select></label>
+        <label class="search-field"><span>Event date</span><input id="event-date" name="date" type="date"></label>
+        <label class="search-field"><span>Guests</span><select id="guest-count" name="guests"><option value="">Any group size</option><option value="50">50 guests</option><option value="120" selected>120 guests</option><option value="180">180 guests</option><option value="250">250 guests</option></select></label>
+        <button class="button button-green search-button" type="submit"><span aria-hidden="true">⌕</span> Search halls</button>
+      </form>
+    </section>
+
+    <!-- Featured halls -->
+    <section class="section halls-section" id="halls">
+      <div class="page-width">
+        <div class="section-heading">
+          <div><p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p><h2>A space for every occasion</h2><p>Popular with local communities. Carefully maintained, thoughtfully equipped.</p></div>
+          <a class="button button-green small-button" href="pages/halls.html">View all 12 halls</a>
+        </div>
+        <div class="hall-grid" id="hall-cards">
+          <article class="hall-card" data-neighbourhood="Kothrud" data-capacity="180">
+            <img class="hall-photo" src="assets/images/sahyadri-hall.png" alt="Sahyadri Community Hall interior">
+            <div class="hall-card-body">
+              <div class="hall-badges"><span class="eco-badge">92/100 eco score</span><span class="rating">★ 4.8 (64)</span></div>
+              <h3>Sahyadri Community Hall</h3><p class="hall-location">Kothrud, Pune · Up to 180 guests</p>
+              <p class="facilities">Wi-Fi <i>·</i> Parking <i>·</i> Step-free access</p>
+              <div class="hall-price-row"><div><strong>₹1,500 / hour</strong><small>Rental only · taxes extra</small></div><a class="button button-outline view-hall" href="pages/hall-details.html?id=sahyadri">View hall details</a></div>
+            </div>
+          </article>
+          <article class="hall-card" data-neighbourhood="Aundh" data-capacity="120">
+            <img class="hall-photo" src="assets/images/lotus-pavilion.png" alt="Lotus Garden Pavilion interior">
+            <div class="hall-card-body">
+              <div class="hall-badges"><span class="eco-badge">96/100 eco score</span><span class="rating">★ 4.8 (64)</span></div>
+              <h3>Lotus Garden Pavilion</h3><p class="hall-location">Aundh, Pune · Up to 120 guests</p>
+              <p class="facilities">Wi-Fi <i>·</i> Parking <i>·</i> Step-free access</p>
+              <div class="hall-price-row"><div><strong>₹1,200 / hour</strong><small>Rental only · taxes extra</small></div><a class="button button-outline view-hall" href="pages/hall-details.html?id=lotus">View hall details</a></div>
+            </div>
+          </article>
+          <article class="hall-card" data-neighbourhood="Baner" data-capacity="300">
+            <img class="hall-photo" src="assets/images/riverside-centre.png" alt="Riverside Civic Centre auditorium">
+            <div class="hall-card-body">
+              <div class="hall-badges"><span class="eco-badge">84/100 eco score</span><span class="rating">★ 4.8 (64)</span></div>
+              <h3>Riverside Civic Centre</h3><p class="hall-location">Baner, Pune · Up to 300 guests</p>
+              <p class="facilities">Wi-Fi <i>·</i> Parking <i>·</i> Step-free access</p>
+              <div class="hall-price-row"><div><strong>₹2,200 / hour</strong><small>Rental only · taxes extra</small></div><a class="button button-outline view-hall" href="pages/hall-details.html?id=riverside">View hall details</a></div>
+            </div>
+          </article>
+        </div>
+        <p class="search-feedback" id="search-feedback" aria-live="polite">Showing featured sample halls.</p>
+      </div>
+    </section>
+
+    <!-- Facilities -->
+    <section class="section essentials-section" id="essentials">
+      <div class="page-width">
+        <div class="section-heading"><div><p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p><h2>The essentials, already taken care of</h2><p>Less planning friction. More time for the people who matter.</p></div></div>
+        <div class="essentials-grid">
+          <article class="essential-card"><span class="line-icon">♿</span><h3>Access for everyone</h3><p>Step-free entrances, accessible restrooms and clear access information.</p></article>
+          <article class="essential-card"><span class="line-icon">⌁</span><h3>Ready to connect</h3><p>Reliable Wi-Fi, presentation equipment and flexible seating.</p></article>
+          <article class="essential-card"><span class="line-icon">↗</span><h3>Easy to arrive</h3><p>Parking, public transport connections and verified directions.</p></article>
+          <article class="essential-card"><span class="line-icon">♧</span><h3>Safe and supported</h3><p>Maintained spaces, clear policies and a local service team.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Booking steps -->
+    <section class="section process-section" id="how-it-works">
+      <div class="page-width">
+        <div class="section-heading"><div><p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p><h2>From an idea to a confirmed booking</h2><p>A clear path, with no surprises along the way.</p></div></div>
+        <div class="steps-grid">
+          <article class="step"><span class="step-number">01</span><h3>Find your fit</h3><p>Search by neighbourhood, capacity and facilities.</p></article>
+          <article class="step"><span class="step-number">02</span><h3>Check the calendar</h3><p>Choose a date and an available time slot.</p></article>
+          <article class="step"><span class="step-number">03</span><h3>Review your estimate</h3><p>See rental, extras, tax and refundable deposit.</p></article>
+          <article class="step"><span class="step-number">04</span><h3>Book with confidence</h3><p>Submit a request. After approval and successful payment, receive your confirmation and check-in pass.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Smart finder promo -->
+    <section class="smart-section">
+      <div class="page-width smart-inner">
+        <div class="smart-copy"><p class="eyebrow">SMART HALL FINDER</p><h2>Tell us what matters.<br>We’ll find your match.</h2><p>Get ranked suggestions based on guest count, budget, facilities and sustainability. Every score comes with a clear explanation.</p><button class="button button-green" data-requires-login="Smart finder">✣ Find my ideal hall</button></div>
+        <aside class="match-card"><div class="match-top"><span class="match-score">98% match</span><span>Recommended for 120 guests</span></div><h3>Sahyadri Community Hall</h3><ul><li>180 capacity · comfortable for your group</li><li>₹1,500/h · within your rental budget</li><li>Step-free access + projector available</li></ul><p class="match-note">A transparent rules-based recommendation, not a booking guarantee.</p></aside>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section testimonials-section">
+      <div class="page-width"><div class="section-heading"><div><p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p><h2>Good spaces bring people together</h2><p>Real experiences from verified community bookings.</p></div></div>
+        <div class="testimonial-grid">
+          <article class="testimonial"><div class="stars">★★★★★</div><blockquote>“The booking was clear from start to finish. The projector and Wi-Fi made our session effortless.”</blockquote><strong>Riya Shah</strong><small>Workshop organiser · Verified event</small></article>
+          <article class="testimonial"><div class="stars">★★★★★</div><blockquote>“Clean, accessible and easy to find. Our older neighbours felt welcome and comfortable.”</blockquote><strong>Vikram Joshi</strong><small>Residents’ association · Verified event</small></article>
+          <article class="testimonial"><div class="stars">★★★★★</div><blockquote>“Knowing the total upfront helped us stay on budget. The support team was wonderful.”</blockquote><strong>Farah Khan</strong><small>Volunteer coordinator · Verified event</small></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sustainability -->
+    <section class="sustainability-section"><div class="page-width sustainability-inner"><div class="sustainability-copy"><span class="leaf-icon">♧</span><h2>Gather with a lighter footprint.</h2><p>Choose spaces with solar energy, water-saving fixtures and waste segregation. Our eco scores make greener decisions easier.</p><a class="button button-white" href="pages/halls.html">Explore sustainable halls</a></div><div class="sustainability-stats"><div><strong>8 / 12</strong><span>Solar-powered halls</span></div><div><strong>92 / 100</strong><span>Sahyadri eco score</span></div></div></div></section>
+
+    <!-- FAQs -->
+    <section class="section faq-section" id="faq"><div class="page-width"><div class="section-heading"><div><p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p><h2>A few things worth knowing</h2><p>Clear answers before you book.</p></div></div>
+      <div class="faq-list">
+        <details><summary>How far in advance can I book?</summary><p>Book up to 90 days ahead. Availability is shown in IST and confirmed after approval and payment.</p></details>
+        <details><summary>What is included in the price?</summary><p>Hall rental is hourly. Equipment, cleaning, 18% tax and a refundable security deposit are itemized before you submit.</p></details>
+        <details><summary>Can I change or cancel my booking?</summary><p>Yes. Submit a request from My Bookings. Refunds depend on notice period; the policy is visible before you confirm.</p></details>
+        <details><summary>What if my preferred time is unavailable?</summary><p>Join the waitlist. If a slot opens, eligible members receive a time-limited invitation to book.</p></details>
+      </div>
+    </div></section>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta"><div class="page-width bottom-cta-inner"><div><h2>Your next gathering starts here.</h2><p>Find a hall that feels right for your community.</p></div><a class="button button-green" href="pages/halls.html">Search available halls</a></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="page-width"><div class="footer-main"><div class="footer-brand"><a class="brand brand-light" href="#top"><span class="brand-mark">▦</span><span>CivicSpace</span></a><p>Better spaces. Stronger communities.</p></div><div><h3>Explore</h3><a href="pages/halls.html">Find halls</a><button data-requires-login="Smart finder">Smart finder</button><a href="#essentials">Accessibility</a></div><div><h3>Here to help</h3><a href="mailto:support@civicspace.in">support@civicspace.in</a><a href="tel:02045678900">020 4567 8900</a></div></div><div class="footer-bottom"><span>© 2026 CivicSpace · Pune community hall services</span><span><a href="#faq">Privacy</a> · <a href="#faq">Terms</a> · <a href="#faq">Booking policy</a></span></div></div></footer>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
