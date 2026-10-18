@@ -370,10 +370,15 @@
                 <button
                   class="button button-outline booking-full-button"
                   type="button"
-                  id="add-to-comparison"
-                >
+                  id="add-to-comparison">
                   Add to comparison
                 </button>
+                <a
+                  class="button button-green booking-full-button"
+                  id="compare-shortlist-link"
+                  href="compare.html">
+                  Compare shortlist
+                </a>
 
                 <p class="deposit-line">
                   <span>Security deposit</span>
@@ -476,29 +481,51 @@
       });
 
       // COMPARISON
-      document.getElementById("add-to-comparison").addEventListener("click", () => {
-        let comparison = [];
+document.getElementById("add-to-comparison").addEventListener("click", () => {
+  const compareKey = "civicSpaceCompareHalls";
 
-        try {
-          comparison = JSON.parse(
-            sessionStorage.getItem("civicspace_compare") || "[]"
-          );
-        } catch (error) {
-          comparison = [];
-        }
+  let comparison = [];
 
-        if (!comparison.includes(hall.id)) {
-          comparison.push(hall.id);
-        }
+  try {
+    comparison = JSON.parse(
+      sessionStorage.getItem(compareKey) || "[]"
+    );
+  } catch (error) {
+    comparison = [];
+  }
 
-        sessionStorage.setItem(
-          "civicspace_compare",
-          JSON.stringify(comparison)
-        );
+  // Avoid adding the same hall twice.
+  if (!comparison.includes(hall.id)) {
+    if (comparison.length >= 3) {
+      document.getElementById("detail-action-message").textContent =
+        "You can compare up to 3 halls at a time.";
+      return;
+    }
 
-        document.getElementById("detail-action-message").textContent =
-          `${hall.name} added to your comparison list (sample browser storage).`;
-      });
+    comparison.push(hall.id);
+  }
+
+  sessionStorage.setItem(
+    compareKey,
+    JSON.stringify(comparison)
+  );
+
+  document.getElementById("detail-action-message").textContent =
+    `${hall.name} added to your comparison list.`;
+
+  // Update the button's appearance.
+  const button = document.getElementById("add-to-comparison");
+
+  button.textContent = "Added to comparison";
+  button.classList.add("is-selected");
+  button.setAttribute("aria-pressed", "true");
+  const compareLink = document.getElementById("compare-shortlist-link");
+
+  if (compareLink) {
+  compareLink.style.display = "inline-flex";
+  compareLink.textContent = `Compare shortlist (${comparison.length})`;
+}
+});
 
       // CHECK AVAILABILITY
       document.getElementById("detail-booking-form").addEventListener("submit", event => {
@@ -526,6 +553,7 @@
           return;
         }
 
+        // Save the selected availability details
         const request = {
           hallId: hall.id,
           hallName: hall.name,
@@ -539,9 +567,9 @@
           JSON.stringify(request)
         );
 
-        // This opens the full booking page directly.
-        // No popup, no second Continue button.
+        // Open the booking form with selected details
         const params = new URLSearchParams();
+
         params.set("hall", hall.id);
         params.set("date", date);
         params.set("time", time);

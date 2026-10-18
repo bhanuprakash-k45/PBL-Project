@@ -281,3 +281,6 @@ body:has(.booking-page) {
 .time-slot.unavailable:hover {
     cursor: pointer;
 }
+#compare-shortlist-link {
+  display: none;
+}

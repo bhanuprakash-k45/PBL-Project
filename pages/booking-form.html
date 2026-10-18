@@ -1,0 +1,861 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#163B65">
+
+    <title>Event details | CivicSpace</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <style>
+        .event-form-page {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+
+        .event-form-heading {
+            margin-bottom: 32px;
+        }
+
+        .event-form-heading h1 {
+            margin: 10px 0;
+            color: #163B65;
+        }
+
+        .event-form-heading p {
+            color: #60758c;
+        }
+
+        .event-steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 30px 0;
+        }
+
+        .event-step {
+            padding: 9px 14px;
+            border-radius: 30px;
+            background: #eaf0f7;
+            color: #163B65;
+            font-size: 13px;
+        }
+
+        .event-step.completed {
+            background: #e7f5ef;
+            color: #08785e;
+        }
+
+        .event-form-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.8fr) minmax(280px, 0.9fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .event-form-main {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .event-form-card,
+        .booking-summary-card {
+            background: #ffffff;
+            border: 1px solid #d9e3ed;
+            border-radius: 14px;
+            padding: 24px;
+        }
+
+        .event-form-card h2,
+        .booking-summary-card h2 {
+            margin: 0 0 22px;
+            color: #203449;
+            font-size: 21px;
+        }
+
+        .event-fields {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px 16px;
+        }
+
+        .event-field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .event-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .event-field label,
+        .event-field legend {
+            font-size: 14px;
+            font-weight: 600;
+            color: #203449;
+        }
+
+        .event-field input,
+        .event-field select,
+        .event-field textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d4dfeb;
+            border-radius: 8px;
+            background: #ffffff;
+            color: #203449;
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .event-field textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .event-field small {
+            color: #60758c;
+            font-size: 12px;
+        }
+
+        .facility-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 4px;
+        }
+
+        .facility-options label,
+        .policy-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.5;
+        }
+
+        .facility-options input,
+        .policy-check input {
+            width: auto;
+            margin-top: 3px;
+            accent-color: #16866a;
+        }
+
+        .form-status {
+            margin-top: 12px;
+            color: #08785e;
+            font-size: 14px;
+        }
+
+        .booking-summary-card {
+            position: sticky;
+            top: 20px;
+        }
+
+        .summary-status {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 7px 12px;
+            border-radius: 30px;
+            background: #fff3db;
+            color: #9b5a00;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .summary-hall {
+            color: #163B65;
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .summary-details {
+            color: #60758c;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 18px;
+        }
+
+        .summary-label {
+            display: inline-block;
+            padding: 6px 10px;
+            background: #eaf0f7;
+            color: #163B65;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            margin: 14px 0;
+            font-size: 14px;
+        }
+
+        .summary-row span:last-child {
+            text-align: right;
+        }
+
+        .summary-divider {
+            border: 0;
+            border-top: 1px solid #d9e3ed;
+            margin: 18px 0;
+        }
+
+        .summary-total {
+            font-weight: 700;
+            color: #163B65;
+            font-size: 18px;
+        }
+
+        .summary-note {
+            color: #60758c;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .transparent-pricing {
+            background: #eaf1f8;
+            border-radius: 12px;
+            padding: 18px;
+            margin-top: 18px;
+            color: #203449;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .form-actions button {
+            cursor: pointer;
+        }
+
+        @media (max-width: 850px) {
+            .event-form-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-summary-card {
+                position: static;
+                grid-row: 1;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .event-form-page {
+                padding: 28px 16px 40px;
+            }
+
+            .event-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .event-field.full-width {
+                grid-column: auto;
+            }
+
+            .event-form-card,
+            .booking-summary-card {
+                padding: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body class="subpage">
+
+<header class="site-header">
+    <div class="header-inner">
+        <a class="brand" href="../index.html">
+            <span class="brand-mark">▦</span>
+            <span>CivicSpace</span>
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+            <a href="halls.html">Find a hall</a>
+            <a href="../index.html#how-it-works">How it works</a>
+            <a href="../index.html#faq">Help</a>
+        </nav>
+
+        <div class="header-actions">
+            <a class="dashboard-button" href="my-bookings.html">
+                My dashboard
+            </a>
+        </div>
+    </div>
+</header>
+
+<main class="event-form-page">
+
+    <section class="event-form-heading">
+        <p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p>
+
+        <h1>Tell us about your event</h1>
+
+        <p>
+            Step 3 of 4 · Review event details and estimated
+            charges before submitting.
+        </p>
+    </section>
+
+    <div class="event-steps">
+        <span class="event-step completed">✓ Hall selected</span>
+        <span class="event-step completed">✓ Date &amp; time</span>
+        <span class="event-step completed">3 · Event details</span>
+        <span class="event-step">4 · Request submitted</span>
+    </div>
+
+    <form id="eventBookingForm">
+
+        <div class="event-form-layout">
+
+            <div class="event-form-main">
+
+                <!-- Event details -->
+                <section class="event-form-card">
+                    <h2>Event details</h2>
+
+                    <div class="event-fields">
+
+                        <div class="event-field full-width">
+                            <label for="eventName">Event name *</label>
+                            <input
+                                type="text"
+                                id="eventName"
+                                name="eventName"
+                                placeholder="Enter your event name"
+                                required
+                            >
+                        </div>
+
+                        <div class="event-field">
+                            <label for="eventType">Event type *</label>
+                            <select id="eventType" name="eventType" required>
+                                <option value="">Select event type</option>
+                                <option>Workshop / educational</option>
+                                <option>Community meeting</option>
+                                <option>Wedding / family function</option>
+                                <option>Religious gathering</option>
+                                <option>Sports / recreation</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <div class="event-field">
+                            <label for="guestCount">Expected guests *</label>
+                            <input
+                                type="number"
+                                id="guestCount"
+                                name="guestCount"
+                                min="1"
+                                max="180"
+                                placeholder="Enter guest count"
+                                required
+                            >
+                            <small>Hall capacity: maximum 180 guests</small>
+                        </div>
+
+                        <div class="event-field full-width">
+                            <label for="eventDescription">Event description</label>
+                            <textarea
+                                id="eventDescription"
+                                name="eventDescription"
+                                placeholder="Describe your event and activities"
+                            ></textarea>
+                        </div>
+
+                        <div class="event-field">
+                            <label for="eventDate">Event date *</label>
+                            <input
+                                type="date"
+                                id="eventDate"
+                                name="eventDate"
+                                required
+                            >
+                        </div>
+
+                        <div class="event-field">
+                            <label for="eventTime">Time slot *</label>
+                            <select id="eventTime" name="eventTime" required>
+                                <option value="">Select a time slot</option>
+                                <option value="09:00–13:00">09:00–13:00 · 4 hours</option>
+                                <option value="14:00–18:00">14:00–18:00 · 4 hours</option>
+                                <option value="18:30–22:00">18:30–22:00 · 3.5 hours</option>
+                            </select>
+        </div>
+
+                    </div>
+
+                    <div class="transparent-pricing" id="selectedSlotNotice">
+                        Your selected date and time will appear here.
+                    </div>
+                </section>
+
+                <!-- Organiser details -->
+                <section class="event-form-card">
+                    <h2>Organiser &amp; additional facilities</h2>
+
+                    <div class="event-fields">
+
+                        <div class="event-field">
+                            <label for="organiserName">Full name *</label>
+                            <input
+                                type="text"
+                                id="organiserName"
+                                name="organiserName"
+                                placeholder="Enter your full name"
+                                required
+                            >
+                        </div>
+
+                        <div class="event-field">
+                            <label for="phoneNumber">Phone number *</label>
+                            <input
+                                type="tel"
+                                id="phoneNumber"
+                                name="phoneNumber"
+                                placeholder="+91"
+                                pattern="[+]?[0-9 ()-]{10,16}"
+                                required
+                            >
+                        </div>
+
+                        <div class="event-field full-width">
+                            <label for="emailAddress">Email address *</label>
+            <input
+                type="email"
+                id="emailAddress"
+                name="emailAddress"
+                placeholder="you@example.com"
+                required
+            >
+                        </div>
+
+                        <div class="event-field full-width">
+                            <div class="facility-options">
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="facilities"
+                                        value="Projector + audio"
+                                        data-price="800"
+                                        checked
+                                    >
+                                    Projector + audio · ₹800 / event
+                                </label>
+
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="facilities"
+                                        value="Cleaning service"
+                                        data-price="400"
+                                        checked
+                                        disabled
+                                    >
+                                    Cleaning service · ₹400 / event (required)
+                                </label>
+
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        name="facilities"
+                                        value="Additional catering support"
+                                        data-price="600"
+                                    >
+                                    Additional catering support · ₹600 / event
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="event-field full-width">
+                            <label for="specialRequests">
+                                Accessibility or special requests
+                            </label>
+                            <textarea
+                                id="specialRequests"
+                                name="specialRequests"
+                                placeholder="Tell us about any accessibility or special requirements"
+            ></textarea>
+                            <small>
+                                The venue team will confirm your requests before the event.
+                            </small>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- Confirmation -->
+                <section class="event-form-card">
+
+                    <label class="policy-check">
+                        <input
+                            type="checkbox"
+                            id="acceptPolicy"
+                            name="acceptPolicy"
+                            required
+                        >
+                        I have read the venue rules and cancellation policy.
+                    </label>
+
+                    <p class="summary-note">
+                        All required fields must be complete. Your booking
+                        request will be reviewed before payment is requested.
+                    </p>
+
+                    <div class="form-actions">
+                        <button class="button button-green" type="submit">
+                            Submit booking request
+                        </button>
+
+                        <button class="button button-outline" type="button" id="saveDraft">
+            Save draft
+        </button>
+                    </div>
+
+                    <p id="formMessage" class="form-status" aria-live="polite"></p>
+                </section>
+
+            </div>
+
+            <!-- Booking summary -->
+            <aside>
+
+                <section class="booking-summary-card">
+
+                    <h2>Booking summary</h2>
+
+                    <span class="summary-status">Not yet confirmed</span>
+
+                    <h3 class="summary-hall">Sahyadri Community Hall</h3>
+
+                    <p class="summary-details">
+                        Kothrud · Pune<br>
+                        Event date and time are selected from availability.
+                    </p>
+
+                    <span class="summary-label">Estimated pricing</span>
+
+                    <div class="summary-row">
+                        <span id="rentalLabel">Hall rental</span>
+                        <span id="rentalAmount">₹0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Projector + audio</span>
+                        <span id="facilityAmount">₹800</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Cleaning fee</span>
+                        <span>₹400</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span id="taxLabel">Tax · 18%</span>
+                        <span id="taxAmount">₹0</span>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Refundable security deposit</span>
+                        <span>₹2,000</span>
+                    </div>
+
+                    <hr class="summary-divider">
+
+                    <div class="summary-row summary-total">
+                        <span>Estimated total</span>
+                        <span id="estimatedTotal">₹0</span>
+                    </div>
+
+                    <p class="summary-note">
+                        Deposit returned within 7 working days after inspection.
+                        No tax charged on the refundable deposit.
+                    </p>
+
+                    <button
+                        class="button button-outline"
+                        type="button"
+                        id="openEstimate"
+                        style="width:100%; margin-top:14px;"
+                    >
+                        Open detailed estimate
+                    </button>
+
+                </section>
+
+                <div class="transparent-pricing">
+                    <strong>Transparent pricing</strong>
+                    <p id="pricingNote">
+                        Your estimate updates when you select facilities.
+        </p>
+                </div>
+
+            </aside>
+
+        </div>
+
+    </form>
+
+</main>
+
+<footer class="site-footer">
+    <div class="page-width">
+        <div class="footer-bottom">
+            <a href="halls.html">← Back to halls</a>
+            <span>© 2026 CivicSpace · Pune community hall services</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Read selected date and time from the Availability page URL
+const params = new URLSearchParams(window.location.search);
+
+const selectedDate = params.get("date");
+const selectedTime = params.get("time");
+
+const eventDateInput = document.getElementById("eventDate");
+const eventTimeInput = document.getElementById("eventTime");
+
+// Automatically fill only date and time
+if (selectedDate && selectedTime) {
+    eventDateInput.value = selectedDate;
+
+    // Match the selected time with the form option
+    const matchingOption = Array.from(eventTimeInput.options).find(
+        option => option.value === selectedTime
+    );
+
+    if (matchingOption) {
+        eventTimeInput.value = selectedTime;
+    } else {
+        console.error("Selected time does not match a form option:", selectedTime);
+    }
+} else {
+    console.error("Date or time was not received from Availability.");
+}
+
+// Update the selected date/time message
+const selectedSlotNotice = document.getElementById("selectedSlotNotice");
+
+function updateSelectedSlotNotice() {
+    if (eventDateInput.value && eventTimeInput.value) {
+        selectedSlotNotice.textContent =
+            "Selected slot: " +
+            eventDateInput.value +
+            " · " +
+            eventTimeInput.value;
+    } else {
+        selectedSlotNotice.textContent =
+            "Choose your event date and time.";
+    }
+}
+
+updateSelectedSlotNotice();
+
+    eventDateInput.addEventListener("change", updateSelectedSlotNotice);
+    eventTimeInput.addEventListener("change", updateSelectedSlotNotice);
+
+    // Sample pricing for Sahyadri Community Hall.
+    const hourlyRate = 1500;
+    const cleaningFee = 400;
+    const projectorFee = 800;
+    const cateringFee = 600;
+    const deposit = 2000;
+    const taxRate = 0.18;
+
+    function getDuration() {
+        const slot = eventTimeInput.value;
+
+        if (slot === "09:00–13:00" || slot === "14:00–18:00") {
+            return 4;
+        }
+
+        if (slot === "18:30–22:00") {
+            return 3.5;
+        }
+
+        return 0;
+    }
+
+    function money(amount) {
+        return new Intl.NumberFormat("en-IN", {
+            style: "currency",
+            currency: "INR",
+            maximumFractionDigits: 0
+        }).format(amount);
+    }
+
+    function updateEstimate() {
+        const duration = getDuration();
+        const rental = hourlyRate * duration;
+
+        const projectorSelected = document.querySelector(
+            'input[name="facilities"][value="Projector + audio"]'
+        ).checked;
+
+        const cateringSelected = document.querySelector(
+            'input[name="facilities"][value="Additional catering support"]'
+        ).checked;
+
+        const facilities =
+            (projectorSelected ? projectorFee : 0) +
+            (cateringSelected ? cateringFee : 0);
+
+        const subtotal = rental + cleaningFee + facilities;
+        const tax = subtotal * taxRate;
+        const total = subtotal + tax + deposit;
+
+        document.getElementById("rentalLabel").textContent =
+            "Hall rental · " + duration + " hours";
+
+        document.getElementById("rentalAmount").textContent =
+            money(rental);
+
+        document.getElementById("facilityAmount").textContent =
+            money(facilities);
+
+        document.getElementById("taxLabel").textContent =
+            "Tax · 18% on " + money(subtotal);
+
+        document.getElementById("taxAmount").textContent =
+            money(tax);
+
+        document.getElementById("estimatedTotal").textContent =
+            money(total);
+
+        document.getElementById("pricingNote").textContent =
+            money(total) + " is an estimate, including " +
+            money(deposit) + " refundable deposit. Final charges " +
+            "will be confirmed by the venue team.";
+        
+    }
+
+    document.querySelectorAll('input[name="facilities"]').forEach(input => {
+        input.addEventListener("change", updateEstimate);
+    });
+
+    eventTimeInput.addEventListener("change", updateEstimate);
+
+    updateEstimate();
+
+document.getElementById("openEstimate").addEventListener("click", () => {
+    const date = document.getElementById("eventDate").value;
+    const time = document.getElementById("eventTime").value;
+
+    const params = new URLSearchParams();
+
+    if (date) params.set("date", date);
+    if (time) params.set("time", time);
+
+    window.location.href =
+        "detailed-estimate.html?" + params.toString();
+});
+    // Restore saved draft when the page opens
+const savedDraft = localStorage.getItem("civicSpace_booking_draft");
+
+if (savedDraft) {
+    const draft = JSON.parse(savedDraft);
+
+    const form = document.getElementById("eventBookingForm");
+
+    Object.entries(draft).forEach(([name, value]) => {
+
+        const fields = form.querySelectorAll(`[name="${name}"]`);
+
+        fields.forEach(field => {
+
+            if (field.type === "checkbox") {
+
+                if (Array.isArray(value)) {
+                    field.checked = value.includes(field.value);
+                } else {
+                    field.checked = value === field.value;
+                }
+
+            } else if (field.type !== "radio") {
+
+                field.value = value;
+
+            }
+
+        });
+
+    });
+
+    updateSelectedSlotNotice();
+    updateEstimate();
+}
+    // Demo draft: stores the form values in this browser.
+    document.getElementById("saveDraft").addEventListener("click", () => {
+        const form = document.getElementById("eventBookingForm");
+        const draft = Object.fromEntries(new FormData(form).entries());
+
+        draft.facilities = Array.from(
+            document.querySelectorAll('input[name="facilities"]:checked')
+        ).map(input => input.value);
+
+        localStorage.setItem(
+            "civicSpace_booking_draft",
+            JSON.stringify(draft)
+        );
+
+        document.getElementById("formMessage").textContent =
+            "Draft saved in this browser.";
+    });
+
+    // Demo submit: does not create a real booking or request payment.
+    document.getElementById("eventBookingForm").addEventListener("submit", event => {
+        event.preventDefault();
+
+        const form = event.currentTarget;
+
+        if (!form.reportValidity()) {
+            return;
+        }
+
+        const bookingRequest = Object.fromEntries(
+            new FormData(form).entries()
+        );
+
+        bookingRequest.facilities = Array.from(
+            document.querySelectorAll('input[name="facilities"]:checked')
+        ).map(input => input.value);
+
+        bookingRequest.estimatedTotal =
+            document.getElementById("estimatedTotal").textContent;
+
+        bookingRequest.status = "Pending venue review";
+
+        localStorage.setItem(
+            "civicSpace_booking_request",
+            JSON.stringify(bookingRequest)
+        );
+
+        document.getElementById("formMessage").textContent =
+            "Demo request saved. No real booking or payment has been made.";
+
+        alert(
+            "Your demo booking request has been saved. " +
+            "The venue would review it before confirmation."
+        );
+    });
+</script>
+
+</body>
+</html>

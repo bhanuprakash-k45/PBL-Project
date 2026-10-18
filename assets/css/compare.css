@@ -1,0 +1,328 @@
+
+/* CivicSpace Compare page */
+
+.compare-page {
+  background: #f3f6f9;
+  color: #203449;
+}
+
+.compare-main {
+  padding-top: 32px;
+  padding-bottom: 34px;
+}
+
+.compare-intro {
+  margin-bottom: 58px;
+}
+
+.compare-intro .eyebrow {
+  color: #16866a;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+.compare-intro h1 {
+  color: #163b65;
+  font-size: 28px;
+  margin: 0 0 10px;
+}
+
+.compare-intro p:last-child {
+  color: #62768c;
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Hall cards */
+
+.compare-cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.compare-hall-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #dce5ed;
+  border-radius: 14px;
+}
+
+.compare-hall-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.compare-hall-tag {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #e8f5ef;
+  color: #16866a;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.compare-hall-tag.blue {
+  background: #eaf2f9;
+  color: #163b65;
+}
+
+.compare-hall-card h2 {
+  color: #163b65;
+  font-size: 18px;
+  line-height: 1.35;
+  margin: 16px 0 12px;
+}
+
+.compare-hall-area {
+  color: #62768c;
+  font-size: 11px;
+  margin: 0 0 16px;
+}
+
+.compare-hall-card .button {
+  width: 100%;
+  min-height: 36px;
+  margin-top: auto;
+  padding: 9px 12px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Comparison table */
+
+.comparison-table-section {
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #dce5ed;
+  border-radius: 14px;
+  margin-bottom: 22px;
+}
+
+.comparison-table-section h2 {
+  color: #203449;
+  font-size: 17px;
+  margin: 0 0 18px;
+}
+
+.comparison-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  min-width: 760px;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 11px;
+}
+
+.comparison-table th,
+.comparison-table td {
+  padding: 17px 10px;
+  border-bottom: 1px solid #dce5ed;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 1.5;
+}
+
+.comparison-table thead th {
+  background: #eaf2f9;
+  color: #203449;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.comparison-table thead th:first-child {
+  width: 24%;
+  border-radius: 7px 0 0 7px;
+}
+
+.comparison-table thead th:last-child {
+  border-radius: 0 7px 7px 0;
+}
+
+.comparison-table tbody th {
+  color: #203449;
+  font-weight: 600;
+}
+
+.comparison-table tbody td {
+  color: #203449;
+}
+
+.comparison-table .available {
+  color: #16866a;
+}
+
+.comparison-table .unavailable {
+  color: #9b6200;
+}
+
+.comparison-table .pricing-warning {
+  display: block;
+  padding: 10px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 7px;
+  color: #9a3412;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.pricing-note {
+  color: #62768c;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 16px 0 0;
+}
+
+/* Recommendation */
+
+.compare-recommendation {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 18px;
+  margin-bottom: 24px;
+  background: #e8f5ef;
+  border-radius: 10px;
+}
+
+.compare-recommendation .recommendation-icon {
+  color: #16866a;
+  font-size: 18px;
+}
+
+.compare-recommendation strong {
+  color: #203449;
+  font-size: 12px;
+}
+
+.compare-recommendation p {
+  color: #62768c;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 8px 0 0;
+}
+
+/* Bottom actions */
+
+.compare-bottom-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 0;
+}
+
+.compare-bottom-actions .button {
+  min-height: 36px;
+  padding: 10px 14px;
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.compare-bottom-actions p {
+  color: #62768c;
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Footer */
+
+.compare-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.compare-footer-grid p {
+  color: #b8cce0;
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.compare-footer-grid a {
+  color: #b8cce0;
+  text-decoration: none;
+}
+
+.compare-footer-grid a:hover {
+  color: #fff;
+}
+
+.footer-brand {
+  color: #fff !important;
+}
+
+/* Empty shortlist */
+
+.compare-empty {
+  padding: 26px;
+  background: #fff;
+  border: 1px solid #dce5ed;
+  border-radius: 14px;
+}
+
+.compare-empty h2 {
+  color: #163b65;
+  margin: 0 0 10px;
+}
+
+.compare-empty p {
+  color: #62768c;
+  line-height: 1.6;
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+  .compare-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .compare-intro {
+    margin-bottom: 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .compare-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-hall-card img {
+    height: 210px;
+  }
+
+  .compare-bottom-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .compare-bottom-actions .button {
+    text-align: center;
+  }
+
+  .compare-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+}

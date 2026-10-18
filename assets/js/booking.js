@@ -519,39 +519,32 @@ waitlistButton.addEventListener("click", function () {
 // ----------------------------------
 
 continueButton.addEventListener("click", function () {
-    if (continueButton.disabled) return;
+    if (!selectedDate || !selectedSlot) {
+        alert("Please select an event date and time.");
+        return;
+    }
 
-    if (!selectedDate || !selectedSlot) return;
+    const available = isSlotAvailable(selectedDate, selectedSlot);
 
-    const available = isSlotAvailable(
-        selectedDate,
-        selectedSlot
-    );
+    if (!available) {
+        alert("This time slot is unavailable. Please join the waitlist.");
+        return;
+    }
 
-    if (!available) return;
+    // Convert the selected date to YYYY-MM-DD
+    const date = formatDate(selectedDate);
 
-    const bookingSelection = {
-        hallId: hall.id,
-        hallName: hall.name,
-        date: formatDate(selectedDate),
-        time: selectedSlot.time,
-        hours: selectedSlot.hours,
-        rentalAmount:
-            hall.pricePerHour * selectedSlot.hours
-    };
+    // Get the selected time slot
+    const time = selectedSlot.time;
 
-    // Keep existing working booking behavior
-    sessionStorage.setItem(
-        "civicspaceBookingSelection",
-        JSON.stringify(bookingSelection)
-    );
+    // Pass date and time directly to the booking form
+    const params = new URLSearchParams({
+        date: date,
+        time: time
+    });
 
-    availabilityMessage.className =
-        "availability-message success";
-
-    availabilityMessage.textContent =
-        "Your selection has been saved in this browser. " +
-        "The next step will collect your event details.";
+    // Navigate to the booking form
+    window.location.href = "booking-form.html?" + params.toString();
 });
 
 // ----------------------------------

@@ -1,0 +1,260 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#163B65">
+
+  <title>Smart Finder — CivicSpace</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/smart-finder.css">
+</head>
+
+<body class="subpage smart-finder-page">
+
+<header class="site-header">
+  <div class="header-inner">
+
+    <a class="brand" href="../index.html">
+      <span class="brand-mark">▦</span>
+      <span>CivicSpace</span>
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="halls.html">Find a hall</a>
+      <a href="../index.html#how-it-works">How it works</a>
+      <a href="smart-finder.html" aria-current="page">Smart finder</a>
+      <a href="../index.html#faq">Help</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="dashboard-button" href="login.html">My dashboard</a>
+      <button class="mobile-menu" aria-label="Open navigation"
+              aria-expanded="false">☰</button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+  <section class="smart-intro page-width">
+    <p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p>
+    <h1>Your event. Your best-fit space.</h1>
+    <p>
+      Tell us what matters and explore ranked recommendations
+      with clear reasons behind every match.
+    </p>
+  </section>
+
+  <section class="smart-layout page-width">
+
+    <!-- Requirements panel -->
+    <aside class="requirements-panel">
+
+      <h2>Your requirements</h2>
+
+      <form id="smart-finder-form">
+
+        <label for="event-type">Event type</label>
+        <select id="event-type">
+          <option value="workshop">Workshop / educational</option>
+          <option value="meeting">Community meeting</option>
+          <option value="celebration">Celebration / family event</option>
+          <option value="presentation">Presentation / seminar</option>
+          <option value="other">Other gathering</option>
+        </select>
+
+        <label for="guest-count">Guests</label>
+        <input id="guest-count" type="number"
+               min="1" max="1000" value="120" required>
+
+        <label for="event-date">Event date</label>
+        <input id="event-date" type="date" required>
+
+        <label for="event-duration">Duration</label>
+        <select id="event-duration">
+          <option value="2">2 hours · Morning</option>
+          <option value="3">3 hours · Morning</option>
+          <option value="4" selected>4 hours · Morning</option>
+          <option value="5">5 hours · Afternoon</option>
+          <option value="6">6 hours · Afternoon</option>
+          <option value="8">8 hours · Full day</option>
+        </select>
+
+        <label for="budget">Maximum rental / hour</label>
+        <input id="budget" type="number"
+               min="0" step="100" value="1800" required>
+
+        <label for="preferred-area">Preferred area</label>
+        <select id="preferred-area">
+          <option value="Kothrud">Kothrud · within 10 km</option>
+          <option value="Aundh">Aundh · within 10 km</option>
+          <option value="Baner">Baner · within 10 km</option>
+          <option value="any">Anywhere in Pune</option>
+        </select>
+
+        <fieldset class="facility-options">
+          <legend>Must-have facilities</legend>
+
+          <label>
+            <input type="checkbox" value="Step-free access" checked>
+            Step-free access
+          </label>
+
+          <label>
+            <input type="checkbox" value="Projector" checked>
+            Projector + audio
+          </label>
+
+          <label>
+            <input type="checkbox" value="Wi-Fi" checked>
+            Wi-Fi
+          </label>
+
+          <label>
+            <input type="checkbox" value="Catering kitchen">
+            Catering kitchen
+          </label>
+        </fieldset>
+
+        <label class="sustainability-option">
+          <input type="checkbox" id="prefer-sustainability" checked>
+          Prefer a high sustainability score
+        </label>
+
+        <button class="button button-green update-button" type="submit">
+          ✨ Update recommendations
+        </button>
+
+      </form>
+
+      <div class="control-note">
+        <span class="note-icon">ⓘ</span>
+        <div>
+          <strong>You're in control</strong>
+          <p>
+            Scores explain suitability, not a guarantee.
+            Confirm availability before booking.
+          </p>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- Recommendations -->
+    <section class="recommendations-panel">
+
+      <div class="recommendations-heading">
+        <div>
+          <h2 id="recommendation-count">3 ranked recommendations</h2>
+          <p id="recommendation-date">
+            Based on your requirements
+          </p>
+        </div>
+
+        <span class="transparent-badge">Transparent matching</span>
+      </div>
+
+      <div id="smart-results" class="smart-results" aria-live="polite">
+        <!-- Recommendations inserted by smart-finder.js -->
+      </div>
+
+      <section class="score-explanation">
+        <h2>How match scores work</h2>
+
+        <div class="score-weights">
+
+          <div>
+            <span>Capacity</span>
+            <strong>30%</strong>
+            <div class="weight-track"><span style="width:100%"></span></div>
+          </div>
+
+          <div>
+            <span>Rental budget</span>
+            <strong>25%</strong>
+            <div class="weight-track"><span style="width:100%"></span></div>
+          </div>
+
+          <div>
+            <span>Facilities</span>
+            <strong>25%</strong>
+            <div class="weight-track"><span style="width:100%"></span></div>
+          </div>
+
+          <div>
+            <span>Distance</span>
+            <strong>10%</strong>
+            <div class="weight-track"><span style="width:100%"></span></div>
+          </div>
+
+          <div>
+            <span>Sustainability</span>
+            <strong>10%</strong>
+            <div class="weight-track"><span style="width:100%"></span></div>
+          </div>
+
+        </div>
+
+        <p class="score-footnote">
+          Mandatory access requirements are checked first.
+          Weighting is fixed for this recommendation; no personal
+          or sensitive information is used.
+        </p>
+      </section>
+
+    </section>
+
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="page-width">
+
+    <div class="smart-footer-grid">
+
+      <div>
+        <a class="brand footer-brand" href="../index.html">
+          <span class="brand-mark">▦</span>
+          <span>CivicSpace</span>
+        </a>
+        <p>Better spaces. Stronger communities.</p>
+      </div>
+
+      <div>
+        <strong>Explore</strong>
+        <p>
+          <a href="halls.html">Find halls</a> ·
+          <a href="smart-finder.html">Smart finder</a> ·
+          <a href="../index.html#faq">Accessibility</a>
+        </p>
+      </div>
+
+      <div>
+        <strong>Here to help</strong>
+        <p>support@civicspace.in · 020 4567 8900</p>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 CivicSpace · Pune community hall services</span>
+      <span>Privacy · Terms · Booking policy</span>
+    </div>
+
+  </div>
+</footer>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/smart-finder.js"></script>
+
+</body>
+</html>

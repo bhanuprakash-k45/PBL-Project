@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#163B65">
+<title>Detailed estimate | CivicSpace</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+<style>
+.estimate-page{max-width:1240px;margin:0 auto;padding:40px 24px 60px;color:#203449}
+.estimate-heading{margin-bottom:30px}.estimate-heading h1{color:#163B65;margin:10px 0}.estimate-heading p{color:#60758c}
+.estimate-layout{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(300px,.9fr);gap:24px;align-items:start}
+.estimate-main{display:flex;flex-direction:column;gap:18px}.estimate-card,.estimate-sidebar-card{background:#fff;border:1px solid #d9e3ed;border-radius:14px;padding:24px}
+.estimate-card h2,.estimate-sidebar-card h2{font-size:21px;color:#203449;margin:0 0 20px}
+.estimate-fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}.estimate-field{display:flex;flex-direction:column;gap:7px}.estimate-field.full{grid-column:1/-1}
+.estimate-field label{font-size:14px;font-weight:600}.estimate-field input,.estimate-field select{width:100%;padding:12px;border:1px solid #d4dfeb;border-radius:8px;background:#fff;color:#203449;font:inherit;font-size:14px}
+.estimate-field small{font-size:12px;color:#60758c}.estimate-options{display:grid;gap:12px;margin-top:12px}.estimate-option{display:flex;align-items:center;justify-content:space-between;gap:14px;font-size:14px}.estimate-option label{display:flex;gap:9px;align-items:flex-start;font-weight:400}.estimate-option input{accent-color:#16866a;margin-top:3px}.estimate-option strong{white-space:nowrap}
+.estimate-chip{display:inline-block;padding:7px 12px;border-radius:30px;background:#e7f5ef;color:#08785e;font-size:12px;font-weight:600;margin-top:16px}
+.estimate-sidebar-card{position:sticky;top:20px}.estimate-label{display:inline-block;padding:6px 10px;background:#eaf0f7;color:#163B65;border-radius:20px;font-size:12px;margin-bottom:12px}
+.estimate-row{display:flex;justify-content:space-between;gap:14px;margin:14px 0;font-size:14px}.estimate-row span:last-child{text-align:right;white-space:nowrap}.estimate-rule{border:0;border-top:1px solid #d9e3ed;margin:18px 0}.estimate-total{font-size:19px;font-weight:700;color:#163B65}.estimate-note{font-size:12px;line-height:1.6;color:#60758c}
+.estimate-callout{background:#eaf1f8;border-radius:12px;padding:16px;margin-top:18px;font-size:13px;line-height:1.6}.estimate-callout strong{color:#163B65}.budget-status{padding:12px;border-radius:9px;background:#f3f6f9;font-size:13px;margin-top:12px}.budget-status.good{background:#e7f5ef;color:#08785e}.budget-status.over{background:#fff3db;color:#9b5a00}
+.estimate-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.estimate-actions button{cursor:pointer}.estimate-back{display:inline-block;margin-bottom:18px;color:#163B65;text-decoration:none;font-size:14px}
+@media(max-width:850px){.estimate-layout{grid-template-columns:1fr}.estimate-sidebar-card{position:static;grid-row:1}}
+@media(max-width:560px){.estimate-page{padding:28px 16px 40px}.estimate-fields{grid-template-columns:1fr}.estimate-field.full{grid-column:auto}.estimate-card,.estimate-sidebar-card{padding:18px}}
+@media print{.site-header,.site-footer,.estimate-back,.estimate-actions,.estimate-main,.estimate-heading p{display:none!important}.estimate-page{max-width:none;padding:0}.estimate-layout{display:block}.estimate-sidebar-card{position:static;border:0}.estimate-callout{background:#fff;border:1px solid #ddd}}
+</style>
+</head>
+<body class="subpage">
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../index.html"><span class="brand-mark">▦</span><span>CivicSpace</span></a>
+<nav class="main-nav" aria-label="Main navigation"><a href="halls.html">Find a hall</a><a href="../index.html#how-it-works">How it works</a><a href="../index.html#faq">Help</a></nav>
+<div class="header-actions"><a class="dashboard-button" href="my-bookings.html">My dashboard</a></div>
+</div></header>
+<main class="estimate-page">
+<a class="estimate-back" id="backToForm" href="booking-form.html">← Back to event details</a>
+<section class="estimate-heading"><p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p><h1>Plan your event budget</h1><p>Explore a detailed, adjustable estimate before you submit your booking request. No payment at this stage.</p></section>
+<div class="estimate-layout">
+<div class="estimate-main">
+<section class="estimate-card"><h2>Configure your estimate</h2>
+<div class="estimate-fields">
+<div class="estimate-field full"><label for="hall">Selected hall</label><select id="hall"><option value="1500" data-name="Sahyadri Community Hall" selected>Sahyadri Community Hall · ₹1,500/hour</option><option value="1200" data-name="Lotus Garden Pavilion">Lotus Garden Pavilion · ₹1,200/hour</option><option value="2200" data-name="Riverside Civic Centre">Riverside Civic Centre · ₹2,200/hour</option></select><small>Sample hall rates for this frontend demo. Confirm actual rates with the venue.</small></div>
+<div class="estimate-field"><label for="eventDate">Event date</label><input type="date" id="eventDate"></div>
+<div class="estimate-field"><label for="guestCount">Expected guests</label><input type="number" id="guestCount" min="1" max="300" value="120"></div>
+<div class="estimate-field"><label for="eventTime">Event time</label><select id="eventTime"><option value="4" data-time="09:00–13:00">09:00–13:00 · 4 hours</option><option value="4" data-time="14:00–18:00">14:00–18:00 · 4 hours</option><option value="3.5" data-time="18:30–22:00">18:30–22:00 · 3.5 hours</option></select></div>
+<div class="estimate-field"><label for="budget">Your budget (₹)</label><input type="number" id="budget" min="0" placeholder="Optional budget limit"></div>
+<div class="estimate-field"><label for="setupHours">Extra setup time</label><select id="setupHours"><option value="0">No extra setup</option><option value="1">1 extra hour</option><option value="2">2 extra hours</option></select></div>
+<div class="estimate-field"><label for="cleanupHours">Extra cleanup time</label><select id="cleanupHours"><option value="0">No extra cleanup</option><option value="1">1 extra hour</option><option value="2">2 extra hours</option></select></div>
+</div>
+<div class="estimate-chip" id="durationChip">4-hour event · within listed slot</div>
+<h3 style="margin:22px 0 8px;color:#203449;font-size:16px">Facilities & additional services</h3>
+<div class="estimate-options">
+<div class="estimate-option"><label><input type="checkbox" id="projector" checked> Projector + audio package</label><strong>₹800</strong></div>
+<div class="estimate-option"><label><input type="checkbox" id="cleaning" checked disabled> Cleaning service · required</label><strong>₹400</strong></div>
+<div class="estimate-option"><label><input type="checkbox" id="catering"> Additional catering support</label><strong>₹600</strong></div>
+<div class="estimate-option"><label><input type="checkbox" id="extraChairs"> Extra chairs (up to 50)</label><strong>₹10/chair</strong></div>
+</div>
+<p class="estimate-note" style="margin-top:12px">Tables, standard chairs, Wi-Fi and drinking water are included in the sample hall rate. Extra setup/cleanup time is estimated at the selected hall's hourly rate.</p>
+<div class="estimate-actions"><button class="button button-green" type="button" id="recalculate">Recalculate estimate</button><button class="button button-outline" type="button" id="resetEstimate">Reset optional choices</button></div>
+</section>
+<section class="estimate-card"><h2>Refund & payment information</h2><p class="estimate-note">The refundable security deposit is shown separately from service charges. The example below is an indicative policy and should be replaced with the venue's approved terms.</p>
+<div class="estimate-row"><span>7+ days before event</span><strong>100% service refund</strong></div><div class="estimate-row"><span>2–6 days before event</span><strong>50% service refund</strong></div><div class="estimate-row"><span>Under 48 hours</span><strong>No service refund</strong></div><p class="estimate-note">Deposit eligibility and tax treatment depend on the venue's final policy. This estimate is not a booking confirmation or payment request.</p></section>
+</div>
+<aside>
+<section class="estimate-sidebar-card"><h2>Your detailed estimate</h2><span class="estimate-label">Indicative pricing</span>
+<div class="estimate-row"><span id="rentalLabel">Hall rental · 4 hours</span><span id="rentalAmount">₹6,000</span></div>
+<div class="estimate-row"><span>Extra setup & cleanup</span><span id="extraTimeAmount">₹0</span></div>
+<div class="estimate-row"><span>Projector + audio</span><span id="projectorAmount">₹800</span></div>
+<div class="estimate-row"><span>Catering support</span><span id="cateringAmount">₹0</span></div>
+<div class="estimate-row"><span>Extra chairs</span><span id="chairsAmount">₹0</span></div>
+<div class="estimate-row"><span>Cleaning fee</span><span id="cleaningAmount">₹400</span></div>
+<hr class="estimate-rule"><div class="estimate-row"><span>Service subtotal</span><span id="subtotalAmount">₹7,200</span></div>
+<div class="estimate-row"><span id="taxLabel">Tax · 18%</span><span id="taxAmount">₹1,296</span></div>
+<div class="estimate-row"><span>Refundable security deposit</span><span id="depositAmount">₹2,000</span></div>
+<hr class="estimate-rule"><div class="estimate-row estimate-total"><span>Estimated total</span><span id="totalAmount">₹10,496</span></div>
+<div class="estimate-row"><span>Estimated cost per guest</span><span id="perGuest">₹87</span></div>
+<div id="budgetStatus" class="budget-status">Enter a budget to compare it with your estimate.</div>
+<div class="estimate-callout"><strong>Price calculation</strong><p id="calculationText">Rental + selected facilities + cleaning = service subtotal. Tax and refundable deposit are then added.</p></div>
+<p class="estimate-note" style="margin-top:14px">Deposit is refundable subject to venue inspection and approved terms. No payment is collected here.</p>
+<div class="estimate-actions"><button class="button button-green" type="button" id="downloadEstimate">Download estimate</button><button class="button button-outline" type="button" id="printEstimate">Print estimate</button><button class="button button-outline" type="button" id="continueBooking">Continue to booking</button></div>
+<p class="estimate-note" id="estimateTimestamp"></p>
+</section>
+<div class="estimate-callout" style="background:#e7f5ef"><strong>Greener choices, same transparency</strong><p>Standard energy-efficient lighting and waste segregation are shown as included in the sample hall rate. No sustainability surcharge is added in this demo.</p></div>
+</aside>
+</div>
+</main>
+<footer class="site-footer"><div class="page-width"><div class="footer-bottom"><a href="halls.html">Find halls</a><span>© 2026 CivicSpace · Pune community hall services</span></div></div></footer>
+<script>
+const params = new URLSearchParams(location.search);
+const dateInput = document.getElementById('eventDate');
+const timeInput = document.getElementById('eventTime');
+if (params.get('date')) dateInput.value = params.get('date');
+if (params.get('time')) {
+  const match = Array.from(timeInput.options).find(o => o.dataset.time === params.get('time') || o.textContent.startsWith(params.get('time')));
+  if (match) timeInput.value = match.value;
+}
+const hallInput = document.getElementById('hall');
+const money = n => new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',maximumFractionDigits:0}).format(Math.round(n));
+const num = id => Number(document.getElementById(id).value || 0);
+function calculate(){
+ const rate = num('hall'), duration = num('eventTime'), setup = num('setupHours'), cleanup = num('cleanupHours');
+ const rental = rate * duration, extraTime = rate * (setup + cleanup);
+ const projector = document.getElementById('projector').checked ? 800 : 0;
+ const catering = document.getElementById('catering').checked ? 600 : 0;
+ const chairs = document.getElementById('extraChairs').checked ? Math.min(Math.max(num('guestCount')-120,0),50)*10 : 0;
+ const cleaning = 400, subtotal = rental + extraTime + projector + catering + chairs + cleaning;
+ const tax = subtotal * .18, deposit = 2000, total = subtotal + tax + deposit;
+ const guests = Math.max(num('guestCount'),1), budget = num('budget');
+ const put=(id,value)=>document.getElementById(id).textContent=value;
+ put('rentalLabel',`Hall rental · ${duration} hours`); put('rentalAmount',money(rental)); put('extraTimeAmount',money(extraTime));
+ put('projectorAmount',money(projector));put('cateringAmount',money(catering));put('chairsAmount',money(chairs));put('cleaningAmount',money(cleaning));
+ put('subtotalAmount',money(subtotal));put('taxLabel',`Tax · 18% on ${money(subtotal)}`);put('taxAmount',money(tax));put('depositAmount',money(deposit));put('totalAmount',money(total));put('perGuest',money(total/guests));
+ put('durationChip',`${duration}-hour event · ${setup+cleanup} extra setup/cleanup hour(s)`);
+ put('calculationText',`Hall rental ${money(rental)} + extra time ${money(extraTime)} + facilities ${money(projector+catering+chairs)} + cleaning ${money(cleaning)} = ${money(subtotal)} service subtotal. Estimated tax ${money(tax)} + refundable deposit ${money(deposit)} = ${money(total)}.`);
+ const status=document.getElementById('budgetStatus'); status.className='budget-status';
+ if(!budget){status.textContent='Enter a budget to compare it with your estimate.';}else if(total<=budget){status.classList.add('good');status.textContent=`Within budget by ${money(budget-total)}.`;}else{status.classList.add('over');status.textContent=`Over budget by ${money(total-budget)}. Try reducing optional facilities or extra time.`;}
+ document.getElementById('estimateTimestamp').textContent='Estimate generated '+new Date().toLocaleDateString('en-IN')+'. Final amount is subject to venue approval.';
+ return {hall:hallInput.selectedOptions[0].dataset.name||hallInput.selectedOptions[0].textContent,date:dateInput.value,time:timeInput.selectedOptions[0].dataset.time||timeInput.selectedOptions[0].textContent,guests:num('guestCount'),duration,rate,rental,extraTime,projector,catering,chairs,cleaning,subtotal,tax,deposit,total,perGuest:total/guests,budget};
+}
+['hall','eventDate','guestCount','eventTime','budget','setupHours','cleanupHours','projector','catering','extraChairs'].forEach(id=>document.getElementById(id).addEventListener('change',calculate));
+document.getElementById('recalculate').addEventListener('click',calculate);
+document.getElementById('resetEstimate').addEventListener('click',()=>{document.getElementById('projector').checked=true;document.getElementById('catering').checked=false;document.getElementById('extraChairs').checked=false;document.getElementById('setupHours').value='0';document.getElementById('cleanupHours').value='0';calculate();});
+document.getElementById('downloadEstimate').addEventListener('click',()=>{const e=calculate();const lines=['CivicSpace — Detailed Estimate','Hall: '+e.hall,'Date: '+(e.date||'Not selected'),'Time: '+(e.time||'Not selected'),'Guests: '+e.guests,'','Hall rental: '+money(e.rental),'Extra setup/cleanup: '+money(e.extraTime),'Projector + audio: '+money(e.projector),'Catering: '+money(e.catering),'Extra chairs: '+money(e.chairs),'Cleaning: '+money(e.cleaning),'Service subtotal: '+money(e.subtotal),'Tax (18%): '+money(e.tax),'Refundable deposit: '+money(e.deposit),'ESTIMATED TOTAL: '+money(e.total),'Cost per guest: '+money(e.perGuest),'','Indicative estimate only. Venue approval and final terms apply.'];const blob=new Blob([lines.join('\n')],{type:'text/plain'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='CivicSpace-estimate.txt';a.click();URL.revokeObjectURL(url);});
+document.getElementById('printEstimate').addEventListener('click',()=>{calculate();window.print();});
+document.getElementById('continueBooking').addEventListener('click',()=>{const q=new URLSearchParams();if(dateInput.value)q.set('date',dateInput.value);if(timeInput.selectedOptions[0].dataset.time)q.set('time',timeInput.selectedOptions[0].dataset.time);location.href='booking-form.html'+(q.toString()?'?'+q.toString():'');});
+document.getElementById('backToForm').href='booking-form.html'+location.search;
+calculate();
+</script>
+</body>
+</html>
