@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CivicSpace | My bookings</title>
+<style>
+:root{
+  --navy:#193f6b;--navy-dark:#16385f;--green:#16866d;--green-dark:#08785e;
+  --bg:#f2f6fa;--text:#243b55;--muted:#637991;--line:#d8e3ef;
+  --soft-blue:#edf3fa;--green-soft:#e8f5ef;--yellow-soft:#fff4dc;--yellow:#9b6100;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+button{font:inherit;cursor:pointer}
+.app{min-height:100vh;display:grid;grid-template-columns:198px minmax(0,1fr)}
+.sidebar{background:var(--navy);color:#fff;padding:24px 15px;display:flex;flex-direction:column;min-height:100vh}
+.brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-size:21px;font-weight:700;margin-bottom:28px;padding:0 7px}
+.brand-mark{height:30px;width:30px;background:var(--green);border-radius:8px;display:grid;place-items:center;font-size:18px}
+.side-label{font-size:10px;color:#b7c9dd;margin:0 0 22px}
+.nav{display:flex;flex-direction:column;gap:5px}
+.nav a{color:#edf4fc;text-decoration:none;padding:11px 13px;border-radius:7px;font-size:12px}
+.nav a.active{background:var(--green);font-weight:700}
+.nav a:hover{background:#ffffff18}
+.nav-icon{display:inline-block;width:20px;color:#a8c8e5}
+.support{background:#e9f5ef;color:var(--text);border-radius:15px;padding:20px;margin-top:34px;font-size:11px}
+.support strong{display:block;font-size:12px;margin-bottom:13px}
+.support p{line-height:1.8;margin-bottom:14px}
+.support a{color:var(--green-dark);font-weight:700;text-decoration:none}
+.sidebar-bottom{margin-top:auto;padding-top:27px;color:#b7c9dd;font-size:11px}
+.sidebar-bottom a{color:inherit;text-decoration:none}
+main{min-width:0}
+.topbar{height:65px;background:#fff;border-bottom:1px solid #e5ebf2;display:flex;align-items:center;justify-content:space-between;padding:0 27px;font-size:11px;color:var(--muted)}
+.top-right{display:flex;align-items:center;gap:15px;color:var(--navy)}
+.verified{background:var(--soft-blue);border-radius:20px;padding:7px 12px;font-weight:700;font-size:10px}
+.user-name{font-weight:700}
+.content{padding:27px 27px 35px;max-width:1500px;margin:0 auto}
+.page-head{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:19px}
+.eyebrow{font-size:10px;color:var(--green-dark);font-weight:700;text-transform:uppercase;margin-bottom:7px}
+h1{font-size:28px;color:var(--navy);line-height:1.2;margin-bottom:9px}
+.subtitle{font-size:13px;color:var(--muted)}
+.primary{background:var(--green);color:#fff;border:1px solid var(--green);border-radius:7px;padding:10px 15px;font-weight:700;font-size:12px;white-space:nowrap}
+.primary:hover{background:var(--green-dark)}
+.panel{background:#fff;border:1px solid var(--line);border-radius:13px;padding:19px;margin-bottom:20px}
+.panel-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}
+.panel h2{font-size:18px;color:#263b53}
+.record-count{font-size:11px;color:var(--muted)}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:730px;font-size:11px}
+thead{background:var(--soft-blue)}
+th{font-weight:700;text-align:left;padding:12px 10px;color:#263b53;white-space:nowrap}
+th:first-child{border-radius:7px 0 0 7px}
+th:last-child{border-radius:0 7px 7px 0}
+td{padding:13px 10px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+.booking-id{font-weight:700;white-space:nowrap}
+.status{display:inline-block;border-radius:20px;padding:5px 9px;font-size:10px;font-weight:700;white-space:nowrap}
+.status.confirmed,.status.completed{background:var(--green-soft);color:#08785e}
+.status.pending{background:var(--yellow-soft);color:var(--yellow)}
+.status.cancelled,.status.rejected{background:#fceaea;color:#a33131}
+.actions{display:flex;gap:6px;align-items:center}
+.small-btn{background:#fff;border:1px solid var(--line);border-radius:6px;padding:7px 9px;color:var(--navy);font-size:10px;white-space:nowrap}
+.small-btn:hover{background:var(--soft-blue)}
+.text-link{display:inline-block;margin:16px 10px 0;color:var(--navy);font-weight:700;text-decoration:none;font-size:12px}
+.empty{padding:30px;text-align:center;color:var(--muted)}
+.footer{font-size:10px;color:var(--muted);padding:0 0 20px}
+.modal-backdrop{display:none;position:fixed;inset:0;background:#12294388;z-index:20;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.show{display:flex}
+.modal{background:#fff;border-radius:14px;padding:24px;max-width:480px;width:100%;box-shadow:0 20px 60px #0002}
+.modal h2{color:var(--navy);font-size:20px;margin-bottom:12px}
+.modal p{margin:8px 0;color:var(--muted)}
+.modal-actions{display:flex;gap:10px;margin-top:20px;justify-content:flex-end}
+@media(max-width:900px){.app{grid-template-columns:170px minmax(0,1fr)}.content{padding:22px 18px}.topbar{padding:0 18px}}
+@media(max-width:650px){.app{display:block}.sidebar{min-height:auto;padding:14px;display:block}.brand{margin-bottom:12px}.side-label,.support,.sidebar-bottom{display:none}.nav{flex-direction:row;overflow-x:auto}.nav a{white-space:nowrap;padding:9px 11px}.topbar{height:52px}.page-head{align-items:flex-start;flex-direction:column}h1{font-size:25px}.panel{padding:14px}.content{padding:20px 12px}.top-right{gap:8px}.user-name{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <a class="brand" href="customer-dashboard.html"><span class="brand-mark">♜</span><span>CivicSpace</span></a>
+  <div class="side-label">YOUR COMMUNITY</div>
+  <nav class="nav">
+    <a href="customer-dashboard.html"><span class="nav-icon">▦</span> Overview</a>
+    <a class="active" href="my-bookings.html"><span class="nav-icon">▤</span> My bookings</a>
+    <a href="notifications.html"><span class="nav-icon">♧</span> Notifications</a>
+    <a href="waitlist.html"><span class="nav-icon">◷</span> Waitlist</a>
+    <a href="reviews.html"><span class="nav-icon">☆</span> Review &amp; feedback</a>
+  </nav>
+  <div class="support"><strong>Need a hand?</strong><p>Our team is here for your next event.</p><a href="help.html">Contact support →</a></div>
+  <div class="sidebar-bottom"><a href="settings.html">Settings</a> &nbsp;·&nbsp; <a href="login.html">Sign out</a></div>
+</aside>
+
+<main>
+  <header class="topbar">
+    <div>Personal workspace / Ananya Deshmukh</div>
+    <div class="top-right"><span style="font-size:17px">♧</span><span class="verified">Verified account</span><span class="user-name">Ananya D.</span></div>
+  </header>
+  <div class="content">
+    <div class="page-head">
+      <div>
+        <div class="eyebrow">MY BOOKINGS</div>
+        <h1>Your booking history</h1>
+        <p class="subtitle">Track upcoming events, completed bookings, and payment status in one place.</p>
+      </div>
+      <button class="primary" onclick="location.href='halls.html'">Book a hall</button>
+    </div>
+
+    <section class="panel">
+      <div class="panel-heading"><h2>Upcoming bookings</h2><span class="record-count" id="upcomingCount">2 records</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Booking ID</th><th>Hall</th><th>Event date</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="upcomingRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-heading"><h2>Completed bookings</h2><span class="record-count" id="completedCount">4 records</span></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Booking ID</th><th>Hall</th><th>Event date</th><th>Amount</th><th>Status</th><th>Action</th></tr></thead>
+          <tbody id="completedRows"></tbody>
+        </table>
+      </div>
+    </section>
+    <footer class="footer">CivicSpace · Secure community booking services · Help &amp; support</footer>
+  </div>
+</main>
+</div>
+
+<div class="modal-backdrop" id="detailsModal">
+  <div class="modal">
+    <h2 id="modalTitle">Booking details</h2>
+    <div id="modalBody"></div>
+    <div class="modal-actions"><button class="small-btn" onclick="closeModal()">Close</button></div>
+  </div>
+</div>
+
+<script>
+const demoUpcoming = [
+ {reference:"CS-2026-1121",eventName:"Community Skills Workshop",hallName:"Sahyadri Community Hall",bookingDate:"2026-11-21",startTime:"09:00",endTime:"13:00",amount:10496,status:"Confirmed",paymentStatus:"Paid"},
+ {reference:"CS-2026-1206",eventName:"Youth Art Meetup",hallName:"Lotus Garden Pavilion",bookingDate:"2026-12-06",startTime:"14:00",endTime:"18:00",amount:7428,status:"Pending approval",paymentStatus:"Unpaid"}
+];
+const demoCompleted = [
+ {reference:"CS-2026-0912",eventName:"Diwali Mela",hallName:"Sahyadri Community Hall",bookingDate:"2026-09-12",amount:8400,status:"Completed"},
+ {reference:"CS-2026-0829",eventName:"Senior Wellness Meet",hallName:"Lotus Garden Pavilion",bookingDate:"2026-08-29",amount:6200,status:"Completed"},
+ {reference:"CS-2026-0815",eventName:"Parent-Teacher Meet",hallName:"Sahyadri Community Hall",bookingDate:"2026-08-15",amount:9800,status:"Completed"},
+ {reference:"CS-2026-0704",eventName:"Summer Reading Circle",hallName:"Lotus Garden Pavilion",bookingDate:"2026-07-04",amount:5600,status:"Completed"}
+];
+
+function readHistory(){
+  try {
+    const data=JSON.parse(localStorage.getItem("civicSpace_booking_history")||"[]");
+    return Array.isArray(data)?data:[];
+  } catch(e){return [];}
+}
+function readCurrent(){
+  try {return JSON.parse(localStorage.getItem("civicSpace_booking_request")||"null");}
+  catch(e){return null;}
+}
+function normalize(item,index){
+  return {
+    ...item,
+    reference:item.reference||item.bookingReference||("CS-LOCAL-"+String(index+1).padStart(4,"0")),
+    hallName:item.hallName||item.venueName||"Community Hall",
+    eventName:item.eventName||"Community Event",
+    bookingDate:item.bookingDate||item.date||"",
+    amount:Number(item.paidAmount??item.totalAmount??item.amount??item.estimatedTotal??0),
+    status:item.status||"Pending approval",
+    paymentStatus:item.paymentStatus||"Unpaid"
+  };
+}
+function allBookings(){
+  const history=readHistory().map(normalize);
+  const current=readCurrent();
+  if(current){
+    const item=normalize(current,history.length);
+    const i=history.findIndex(x=>x.reference===item.reference);
+    if(i>=0)history[i]=item;else history.unshift(item);
+  }
+  return history.length?history:[...demoUpcoming,...demoCompleted].map(normalize);
+}
+function dateLabel(value){
+  if(!value)return "—";
+  const d=new Date(value+"T00:00:00");
+  return isNaN(d)?value:d.toLocaleDateString("en-GB",{day:"2-digit",month:"short",year:"numeric"});
+}
+function timeLabel(b){
+  return b.startTime&&b.endTime?`${b.startTime}–${b.endTime}`:"";
+}
+function money(value){
+  if(!value)return "—";
+  return "₹"+Number(value).toLocaleString("en-IN",{maximumFractionDigits:0});
+}
+function statusClass(status){
+  const s=(status||"").toLowerCase();
+  if(s.includes("complete")||s.includes("confirm")||s.includes("paid"))return "confirmed";
+  if(s.includes("reject")||s.includes("cancel"))return "cancelled";
+  return "pending";
+}
+function statusText(b){
+  if(b.status==="Confirmed (demo)")return "Confirmed";
+  if(b.status==="Paid (demo)")return "Confirmed";
+  return b.status||b.paymentStatus||"Pending approval";
+}
+function isCompleted(b){
+  const s=(b.status||"").toLowerCase();
+  return s.includes("completed")||s.includes("past")||s.includes("cancelled")||s.includes("rejected");
+}
+function rowHtml(b,completed){
+  const status=statusText(b);
+  const amount=b.amount?money(b.amount):(status.toLowerCase().includes("pending")? "₹7,428 est.":"—");
+  const detail=`<button class="small-btn" onclick="showDetails('${safe(b.reference)}')">View details</button>`;
+  let action=detail;
+  if(!completed){
+    const canCancel=!status.toLowerCase().includes("pending approval")&&!status.toLowerCase().includes("pending");
+    action+=canCancel?`<button class="small-btn" onclick="cancelBooking('${safe(b.reference)}')">Cancel</button>`:`<button class="small-btn" onclick="withdrawBooking('${safe(b.reference)}')">Withdraw request</button>`;
+  }
+  return `<tr>
+    <td class="booking-id">${escapeHtml(b.reference)}</td>
+    <td>${escapeHtml(b.hallName)}</td>
+    <td>${dateLabel(b.bookingDate)}${timeLabel(b)?`<br>${escapeHtml(timeLabel(b))}`:""}</td>
+    <td>${amount}${b.paymentStatus==="Unpaid"&&status.toLowerCase().includes("pending")?"<br>Unpaid":""}</td>
+    <td><span class="status ${statusClass(status)}">${escapeHtml(status)}</span></td>
+    <td><div class="actions">${action}</div></td>
+  </tr>`;
+}
+function safe(value){return String(value).replace(/\\/g,"\\\\").replace(/'/g,"\\'");}
+function escapeHtml(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function render(){
+  const bookings=allBookings();
+  const upcoming=bookings.filter(b=>!isCompleted(b));
+  const completed=bookings.filter(isCompleted);
+  document.getElementById("upcomingCount").textContent=`${upcoming.length} records`;
+  document.getElementById("completedCount").textContent=`${completed.length} records`;
+  document.getElementById("upcomingRows").innerHTML=upcoming.length?upcoming.map(b=>rowHtml(b,false)).join(""):`<tr><td colspan="6" class="empty">No upcoming bookings yet. <a href="halls.html">Book a hall</a></td></tr>`;
+  document.getElementById("completedRows").innerHTML=completed.length?completed.map(b=>rowHtml(b,true)).join(""):`<tr><td colspan="6" class="empty">No completed bookings yet.</td></tr>`;
+}
+function findBooking(ref){return allBookings().find(b=>b.reference===ref);}
+function showDetails(ref){
+  const b=findBooking(ref);if(!b)return;
+  document.getElementById("modalTitle").textContent="Booking details · "+b.reference;
+  document.getElementById("modalBody").innerHTML=`
+    <p><strong>Event:</strong> ${escapeHtml(b.eventName)}</p>
+    <p><strong>Hall:</strong> ${escapeHtml(b.hallName)}</p>
+    <p><strong>Date:</strong> ${dateLabel(b.bookingDate)}</p>
+    <p><strong>Time:</strong> ${escapeHtml(timeLabel(b)||"Not specified")}</p>
+    <p><strong>Status:</strong> ${escapeHtml(statusText(b))}</p>
+    <p><strong>Payment:</strong> ${escapeHtml(b.paymentStatus||"Not available")}</p>
+    <p><strong>Amount:</strong> ${b.amount?money(b.amount):"Estimate pending approval"}</p>`;
+  document.getElementById("detailsModal").classList.add("show");
+}
+function closeModal(){document.getElementById("detailsModal").classList.remove("show");}
+function updateBooking(ref,changes){
+  let history=readHistory();
+  let current=readCurrent();
+  let found=false;
+  history=history.map((b,i)=>{
+    const n=normalize(b,i);
+    if(n.reference===ref){found=true;return {...b,...changes};}
+    return b;
+  });
+  if(current&&normalize(current,0).reference===ref){current={...current,...changes};localStorage.setItem("civicSpace_booking_request",JSON.stringify(current));found=true;}
+  if(found)localStorage.setItem("civicSpace_booking_history",JSON.stringify(history));
+  render();
+}
+function cancelBooking(ref){
+  const b=findBooking(ref);if(!b)return;
+  if(!confirm(`Cancel booking ${ref}? This demo only changes its local status.`))return;
+  updateBooking(ref,{status:"Cancelled",paymentStatus:b.paymentStatus||"Not available"});
+}
+function withdrawBooking(ref){
+  if(!confirm(`Withdraw request ${ref}?`))return;
+  updateBooking(ref,{status:"Withdrawn",paymentStatus:"Not available"});
+}
+document.getElementById("detailsModal").addEventListener("click",e=>{if(e.target.id==="detailsModal")closeModal();});
+render();
+</script>
+</body>
+</html>
