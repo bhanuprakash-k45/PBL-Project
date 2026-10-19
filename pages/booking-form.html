@@ -481,6 +481,112 @@
                                 </label>
                             </div>
                         </div>
+                        
+                        <!-- Hybrid approval: additional arrangements -->
+                        <div class="event-field full-width">
+                            <fieldset style="border: 0; padding: 0; margin: 0;">
+                                <legend>Do you need additional arrangements?</legend>
+
+                                <div class="facility-options">
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="requiresSpecialArrangements"
+                                            value="no"
+                                            id="standardRequirements"
+                                            required
+                                            checked
+                                        >
+                                        No, standard hall facilities are sufficient
+                                    </label>
+
+                                    <label>
+                                        <input
+                                            type="radio"
+                                            name="requiresSpecialArrangements"
+                                            value="yes"
+                                            id="specialRequirements"
+                                            required
+                                        >
+                                        Yes, I need additional arrangements
+                                    </label>
+                                </div>
+                            </fieldset>
+                        </div>
+
+                        <!-- Blocked until Yes is selected -->
+                        <div
+                            class="event-field full-width"
+                            id="specialArrangementsSection"
+                            hidden
+                        >
+                            <fieldset
+                                id="specialArrangementsFieldset"
+                                disabled
+                                style="border: 0; padding: 0; margin: 0;"
+                            >
+                                <legend>What additional arrangements do you need?</legend>
+
+                                <div class="facility-options">
+                                    <label type="text1">
+                                        <input
+                                            type="checkbox"
+                                            name="specialArrangements"
+                                            value="Extra stage or decorations"
+                                        >
+                                        Extra stage or decorations
+                                    </label>
+
+                                    <label type="text1">
+                                        <input
+                                            type="checkbox"
+                                            name="specialArrangements"
+                                            value="Extra sound or lighting equipment"
+                                        >
+                                        Extra sound or lighting equipment
+                                    </label>
+
+                                    <label type="text1">
+                                        <input
+                                            type="checkbox"
+                                            name="specialArrangements"
+                                            value="Extra furniture or seating"
+                                        >
+                                        Extra furniture or seating
+                                    </label>
+
+                                    <label type="text1">
+                                        <input
+                                            type="checkbox"
+                                            name="specialArrangements"
+                                            value="Extended setup or cleanup time"
+                                        >
+                                        Extended setup or cleanup time
+                                    </label>
+
+                                    <label type="text1">
+                                        <input
+                                            type="checkbox"
+                                            name="specialArrangements"
+                                            value="Other arrangements"
+                                    >
+                                        Other arrangements
+                                    </label>
+                                </div>
+
+                                <div class="event-field" style="margin-top: 16px;">
+                                    <label for="arrangementDescription">
+                                        Describe your additional requirements *
+                                    </label>
+
+                                    <textarea
+                                        id="arrangementDescription"
+                                        name="arrangementDescription"
+                                        placeholder="Explain what you need and any details the venue team should know."
+                                    ></textarea>
+                                </div>
+                            </fieldset>
+                        </div>
 
                         <div class="event-field full-width">
                             <label for="specialRequests">
@@ -499,36 +605,9 @@
                     </div>
                 </section>
 
-                <!-- Confirmation -->
-                <section class="event-form-card">
+                
 
-                    <label class="policy-check">
-                        <input
-                            type="checkbox"
-                            id="acceptPolicy"
-                            name="acceptPolicy"
-                            required
-                        >
-                        I have read the venue rules and cancellation policy.
-                    </label>
 
-                    <p class="summary-note">
-                        All required fields must be complete. Your booking
-                        request will be reviewed before payment is requested.
-                    </p>
-
-                    <div class="form-actions">
-                        <button class="button button-green" type="submit">
-                            Submit booking request
-                        </button>
-
-                        <button class="button button-outline" type="button" id="saveDraft">
-            Save draft
-        </button>
-                    </div>
-
-                    <p id="formMessage" class="form-status" aria-live="polite"></p>
-                </section>
 
             </div>
 
@@ -609,6 +688,12 @@
 
         </div>
 
+        <div class="event-form-actions" style="margin-top: 24px;">
+            <button class="button button-outline" type="button" id="saveDraft">Save draft</button>
+            <button class="button" type="submit" id="submitBooking">Submit booking request</button>
+            <p id="formMessage" role="status" aria-live="polite"></p>
+        </div>
+
     </form>
 
 </main>
@@ -631,7 +716,67 @@ const selectedTime = params.get("time");
 
 const eventDateInput = document.getElementById("eventDate");
 const eventTimeInput = document.getElementById("eventTime");
+// Hybrid approval: enable additional arrangements only when Yes is selected
 
+const standardRequirements = document.getElementById(
+    "standardRequirements"
+);
+
+const specialRequirements = document.getElementById(
+    "specialRequirements"
+);
+
+const specialArrangementsSection = document.getElementById(
+    "specialArrangementsSection"
+);
+
+const specialArrangementsFieldset = document.getElementById(
+    "specialArrangementsFieldset"
+);
+
+const arrangementDescription = document.getElementById(
+    "arrangementDescription"
+);
+
+function updateSpecialArrangements() {
+
+    const needsSpecialArrangements = specialRequirements.checked;
+
+    // Show or hide the additional arrangements section
+    specialArrangementsSection.hidden = !needsSpecialArrangements;
+
+    // Enable or disable all additional arrangement fields
+    specialArrangementsFieldset.disabled = !needsSpecialArrangements;
+
+    // Description is required only when Yes is selected
+    arrangementDescription.required = needsSpecialArrangements;
+
+    // Clear the extra requirements when No is selected
+    if (!needsSpecialArrangements) {
+
+        specialArrangementsFieldset
+            .querySelectorAll('input[type="checkbox"]')
+            .forEach(input => {
+                input.checked = false;
+            });
+
+        arrangementDescription.value = "";
+    }
+}
+
+// Listen for both radio options
+standardRequirements.addEventListener(
+    "change",
+    updateSpecialArrangements
+);
+
+specialRequirements.addEventListener(
+    "change",
+    updateSpecialArrangements
+);
+
+// Set the correct initial state when the page opens
+updateSpecialArrangements();
 // Automatically fill only date and time
 if (selectedDate && selectedTime) {
     eventDateInput.value = selectedDate;
@@ -768,43 +913,38 @@ document.getElementById("openEstimate").addEventListener("click", () => {
 });
     // Restore saved draft when the page opens
 const savedDraft = localStorage.getItem("civicSpace_booking_draft");
-
 if (savedDraft) {
-    const draft = JSON.parse(savedDraft);
-
-    const form = document.getElementById("eventBookingForm");
-
-    Object.entries(draft).forEach(([name, value]) => {
-
-        const fields = form.querySelectorAll(`[name="${name}"]`);
-
-        fields.forEach(field => {
-
-            if (field.type === "checkbox") {
-
-                if (Array.isArray(value)) {
-                    field.checked = value.includes(field.value);
-                } else {
+    try {
+        const draft = JSON.parse(savedDraft);
+        const form = document.getElementById("eventBookingForm");
+        Object.entries(draft).forEach(([name, value]) => {
+            form.querySelectorAll(`[name="${name}"]`).forEach(field => {
+                if (field.type === "checkbox") {
+                    field.checked = Array.isArray(value) ? value.includes(field.value) : value === field.value;
+                } else if (field.type === "radio") {
                     field.checked = value === field.value;
+                } else {
+                    field.value = value;
                 }
-
-            } else if (field.type !== "radio") {
-
-                field.value = value;
-
-            }
-
+            });
         });
-
-    });
-
-    updateSelectedSlotNotice();
-    updateEstimate();
+        updateSpecialArrangements();
+        updateSelectedSlotNotice();
+        updateEstimate();
+    } catch (error) {
+        console.error("Could not restore saved booking draft:", error);
+    }
 }
-    // Demo draft: stores the form values in this browser.
+
+// Demo draft: stores the form values in this browser.
     document.getElementById("saveDraft").addEventListener("click", () => {
         const form = document.getElementById("eventBookingForm");
         const draft = Object.fromEntries(new FormData(form).entries());
+
+        draft.requiresSpecialArrangements = specialRequirements.checked ? "yes" : "no";
+        draft.specialArrangements = Array.from(
+            form.querySelectorAll('input[name="specialArrangements"]:checked')
+        ).map(input => input.value);
 
         draft.facilities = Array.from(
             document.querySelectorAll('input[name="facilities"]:checked')
@@ -837,6 +977,11 @@ if (savedDraft) {
             document.querySelectorAll('input[name="facilities"]:checked')
         ).map(input => input.value);
 
+        bookingRequest.specialArrangements = Array.from(
+            form.querySelectorAll('input[name="specialArrangements"]:checked')
+        ).map(input => input.value);
+        bookingRequest.requiresSpecialArrangements = specialRequirements.checked ? "yes" : "no";
+        bookingRequest.arrangementDescription = arrangementDescription.value;
         bookingRequest.estimatedTotal =
             document.getElementById("estimatedTotal").textContent;
 

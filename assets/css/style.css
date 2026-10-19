@@ -284,3 +284,36 @@ body:has(.booking-page) {
 #compare-shortlist-link {
   display: none;
 }
+/* Blocked additional arrangements */
+#specialArrangementsFieldset:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    opacity: 0.7;
+    cursor: not-allowed;
+    border-radius: 8px;
+}
+
+/* Light grey checkboxes when blocked */
+#specialArrangementsFieldset:disabled input[type="checkbox"] {
+    opacity: 1;
+    cursor: not-allowed;
+}
+#specialArrangementsFieldset:disabled [type="text1"] {
+    opacity: 10;
+    cursor: not-allowed;
+}
+
+/* Light grey description box when blocked */
+#specialArrangementsFieldset:disabled textarea {
+    background-color: #e9ecef;
+    color: #9ca3af;
+    border-color: #d1d5db;
+    cursor: not-allowed;
+}
+
+/* Normal appearance when enabled */
+#specialArrangementsFieldset:not(:disabled) {
+    background-color: transparent;
+    color: inherit;
+    opacity: 1;
+}
