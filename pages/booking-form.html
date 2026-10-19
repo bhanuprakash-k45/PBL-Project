@@ -1,12 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#163B65">
-
-    <title>Event details | CivicSpace</title>
+    <title>Event Details | CivicSpace</title>
 
     <link rel="stylesheet" href="../assets/css/style.css">
 
@@ -65,7 +63,7 @@
 
         .event-form-card,
         .booking-summary-card {
-            background: #ffffff;
+            background: #fff;
             border: 1px solid #d9e3ed;
             border-radius: 14px;
             padding: 24px;
@@ -108,7 +106,7 @@
             padding: 12px;
             border: 1px solid #d4dfeb;
             border-radius: 8px;
-            background: #ffffff;
+            background: #fff;
             color: #203449;
             font: inherit;
             font-size: 14px;
@@ -303,13 +301,8 @@
 
     <section class="event-form-heading">
         <p class="eyebrow">COMMUNITY SPACES, SIMPLIFIED</p>
-
         <h1>Tell us about your event</h1>
-
-        <p>
-            Step 3 of 4 · Review event details and estimated
-            charges before submitting.
-        </p>
+        <p>Step 3 of 4 · Review event details and estimated charges before submitting.</p>
     </section>
 
     <div class="event-steps">
@@ -379,63 +372,58 @@
                         </div>
 
                         <div class="event-field">
-                            <label for="eventDate">Event date *</label>
-                            <input
-                                type="date"
-                                id="eventDate"
-                                name="eventDate"
-                                required
-                            >
-                        </div>
-
-                        <div class="event-field">
-                            <label for="eventTime">Time slot *</label>
-                            <select id="eventTime" name="eventTime" required>
-                                <option value="">Select a time slot</option>
-                                <option value="09:00–13:00">09:00–13:00 · 4 hours</option>
-                                <option value="14:00–18:00">14:00–18:00 · 4 hours</option>
-                                <option value="18:30–22:00">18:30–22:00 · 3.5 hours</option>
-                            </select>
+            <label for="eventDate">Event date *</label>
+            <input type="date" id="eventDate" name="eventDate" required>
         </div>
 
-                    </div>
+        <div class="event-field">
+            <label for="eventTime">Time slot *</label>
+            <select id="eventTime" name="eventTime" required>
+                <option value="">Select a time slot</option>
+                <option value="09:00–13:00">09:00–13:00 · 4 hours</option>
+                <option value="14:00–18:00">14:00–18:00 · 4 hours</option>
+                <option value="18:30–22:00">18:30–22:00 · 3.5 hours</option>
+            </select>
+        </div>
 
-                    <div class="transparent-pricing" id="selectedSlotNotice">
-                        Your selected date and time will appear here.
-                    </div>
-                </section>
+    </div>
 
-                <!-- Organiser details -->
-                <section class="event-form-card">
-                    <h2>Organiser &amp; additional facilities</h2>
+    <div class="transparent-pricing" id="selectedSlotNotice">
+        Your selected date and time will appear here.
+    </div>
+</section>
 
-                    <div class="event-fields">
+<!-- Organiser details -->
+<section class="event-form-card">
+    <h2>Organiser &amp; additional facilities</h2>
 
-                        <div class="event-field">
-                            <label for="organiserName">Full name *</label>
-                            <input
-                                type="text"
-                                id="organiserName"
-                                name="organiserName"
-                                placeholder="Enter your full name"
-                                required
-                            >
-                        </div>
+    <div class="event-fields">
 
-                        <div class="event-field">
-                            <label for="phoneNumber">Phone number *</label>
-                            <input
-                                type="tel"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                placeholder="+91"
-                                pattern="[+]?[0-9 ()-]{10,16}"
-                                required
-                            >
-                        </div>
+        <div class="event-field">
+            <label for="organiserName">Full name *</label>
+            <input
+                type="text"
+                id="organiserName"
+                name="organiserName"
+                placeholder="Enter your full name"
+                required
+            >
+        </div>
 
-                        <div class="event-field full-width">
-                            <label for="emailAddress">Email address *</label>
+        <div class="event-field">
+            <label for="phoneNumber">Phone number *</label>
+            <input
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                placeholder="+91"
+                pattern="[+]?[0-9 ()-]{10,16}"
+                required
+            >
+        </div>
+
+        <div class="event-field full-width">
+            <label for="emailAddress">Email address *</label>
             <input
                 type="email"
                 id="emailAddress"
@@ -443,259 +431,255 @@
                 placeholder="you@example.com"
                 required
             >
-                        </div>
+        </div>
 
-                        <div class="event-field full-width">
-                            <div class="facility-options">
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="facilities"
-                                        value="Projector + audio"
-                                        data-price="800"
-                                        checked
-                                    >
-                                    Projector + audio · ₹800 / event
-                                </label>
-
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="facilities"
-                                        value="Cleaning service"
-                                        data-price="400"
-                                        checked
-                                        disabled
-                                    >
-                                    Cleaning service · ₹400 / event (required)
-                                </label>
-
-                                <label>
-                                    <input
-                                        type="checkbox"
-                                        name="facilities"
-                                        value="Additional catering support"
-                                        data-price="600"
-                                    >
-                                    Additional catering support · ₹600 / event
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <!-- Hybrid approval: additional arrangements -->
-                        <div class="event-field full-width">
-                            <fieldset style="border: 0; padding: 0; margin: 0;">
-                                <legend>Do you need additional arrangements?</legend>
-
-                                <div class="facility-options">
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="requiresSpecialArrangements"
-                                            value="no"
-                                            id="standardRequirements"
-                                            required
-                                            checked
-                                        >
-                                        No, standard hall facilities are sufficient
-                                    </label>
-
-                                    <label>
-                                        <input
-                                            type="radio"
-                                            name="requiresSpecialArrangements"
-                                            value="yes"
-                                            id="specialRequirements"
-                                            required
-                                        >
-                                        Yes, I need additional arrangements
-                                    </label>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <!-- Blocked until Yes is selected -->
-                        <div
-                            class="event-field full-width"
-                            id="specialArrangementsSection"
-                            hidden
-                        >
-                            <fieldset
-                                id="specialArrangementsFieldset"
-                                disabled
-                                style="border: 0; padding: 0; margin: 0;"
-                            >
-                                <legend>What additional arrangements do you need?</legend>
-
-                                <div class="facility-options">
-                                    <label type="text1">
-                                        <input
-                                            type="checkbox"
-                                            name="specialArrangements"
-                                            value="Extra stage or decorations"
-                                        >
-                                        Extra stage or decorations
-                                    </label>
-
-                                    <label type="text1">
-                                        <input
-                                            type="checkbox"
-                                            name="specialArrangements"
-                                            value="Extra sound or lighting equipment"
-                                        >
-                                        Extra sound or lighting equipment
-                                    </label>
-
-                                    <label type="text1">
-                                        <input
-                                            type="checkbox"
-                                            name="specialArrangements"
-                                            value="Extra furniture or seating"
-                                        >
-                                        Extra furniture or seating
-                                    </label>
-
-                                    <label type="text1">
-                                        <input
-                                            type="checkbox"
-                                            name="specialArrangements"
-                                            value="Extended setup or cleanup time"
-                                        >
-                                        Extended setup or cleanup time
-                                    </label>
-
-                                    <label type="text1">
-                                        <input
-                                            type="checkbox"
-                                            name="specialArrangements"
-                                            value="Other arrangements"
-                                    >
-                                        Other arrangements
-                                    </label>
-                                </div>
-
-                                <div class="event-field" style="margin-top: 16px;">
-                                    <label for="arrangementDescription">
-                                        Describe your additional requirements *
-                                    </label>
-
-                                    <textarea
-                                        id="arrangementDescription"
-                                        name="arrangementDescription"
-                                        placeholder="Explain what you need and any details the venue team should know."
-                                    ></textarea>
-                                </div>
-                            </fieldset>
-                        </div>
-
-                        <div class="event-field full-width">
-                            <label for="specialRequests">
-                                Accessibility or special requests
-                            </label>
-                            <textarea
-                                id="specialRequests"
-                                name="specialRequests"
-                                placeholder="Tell us about any accessibility or special requirements"
-            ></textarea>
-                            <small>
-                                The venue team will confirm your requests before the event.
-                            </small>
-                        </div>
-
-                    </div>
-                </section>
-
-                
-
-
-
-            </div>
-
-            <!-- Booking summary -->
-            <aside>
-
-                <section class="booking-summary-card">
-
-                    <h2>Booking summary</h2>
-
-                    <span class="summary-status">Not yet confirmed</span>
-
-                    <h3 class="summary-hall">Sahyadri Community Hall</h3>
-
-                    <p class="summary-details">
-                        Kothrud · Pune<br>
-                        Event date and time are selected from availability.
-                    </p>
-
-                    <span class="summary-label">Estimated pricing</span>
-
-                    <div class="summary-row">
-                        <span id="rentalLabel">Hall rental</span>
-                        <span id="rentalAmount">₹0</span>
-                    </div>
-
-                    <div class="summary-row">
-                        <span>Projector + audio</span>
-                        <span id="facilityAmount">₹800</span>
-                    </div>
-
-                    <div class="summary-row">
-                        <span>Cleaning fee</span>
-                        <span>₹400</span>
-                    </div>
-
-                    <div class="summary-row">
-                        <span id="taxLabel">Tax · 18%</span>
-                        <span id="taxAmount">₹0</span>
-                    </div>
-
-                    <div class="summary-row">
-                        <span>Refundable security deposit</span>
-                        <span>₹2,000</span>
-                    </div>
-
-                    <hr class="summary-divider">
-
-                    <div class="summary-row summary-total">
-                        <span>Estimated total</span>
-                        <span id="estimatedTotal">₹0</span>
-                    </div>
-
-                    <p class="summary-note">
-                        Deposit returned within 7 working days after inspection.
-                        No tax charged on the refundable deposit.
-                    </p>
-
-                    <button
-                        class="button button-outline"
-                        type="button"
-                        id="openEstimate"
-                        style="width:100%; margin-top:14px;"
+        <div class="event-field full-width">
+            <div class="facility-options">
+                <label>
+                    <input
+                        type="checkbox"
+                        name="facilities"
+                        value="Projector + audio"
+                        data-price="800"
+                        checked
                     >
-                        Open detailed estimate
-                    </button>
+                    Projector + audio · ₹800 / event
+                </label>
 
-                </section>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="facilities"
+                        value="Cleaning service"
+                        data-price="400"
+                        checked
+                        disabled
+                    >
+                    Cleaning service · ₹400 / event (required)
+                </label>
 
-                <div class="transparent-pricing">
-                    <strong>Transparent pricing</strong>
-                    <p id="pricingNote">
-                        Your estimate updates when you select facilities.
-        </p>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="facilities"
+                        value="Additional catering support"
+                        data-price="600"
+                    >
+                    Additional catering support · ₹600 / event
+                </label>
+            </div>
+        </div>
+
+        <!-- Additional arrangements -->
+        <div class="event-field full-width">
+            <fieldset style="border: 0; padding: 0; margin: 0;">
+                <legend>Do you need additional arrangements?</legend>
+
+                <div class="facility-options">
+                    <label>
+                        <input
+                            type="radio"
+                            name="requiresSpecialArrangements"
+                            value="no"
+                            id="standardRequirements"
+                            required
+                            checked
+                        >
+                        No, standard hall facilities are sufficient
+                    </label>
+
+                    <label>
+                        <input
+                            type="radio"
+                            name="requiresSpecialArrangements"
+                            value="yes"
+                            id="specialRequirements"
+                            required
+                        >
+                        Yes, I need additional arrangements
+                    </label>
+                </div>
+            </fieldset>
+        </div>
+
+        <div
+            class="event-field full-width"
+            id="specialArrangementsSection"
+            hidden
+        >
+            <fieldset
+                id="specialArrangementsFieldset"
+                disabled
+                style="border: 0; padding: 0; margin: 0;"
+            >
+                <legend>What additional arrangements do you need?</legend>
+
+                <div class="facility-options">
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="specialArrangements"
+                            value="Extra stage or decorations"
+                        >
+                        Extra stage or decorations
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="specialArrangements"
+                            value="Extra sound or lighting equipment"
+                        >
+                        Extra sound or lighting equipment
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="specialArrangements"
+                            value="Extra furniture or seating"
+                        >
+                        Extra furniture or seating
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="specialArrangements"
+                            value="Extended setup or cleanup time"
+                        >
+                        Extended setup or cleanup time
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            name="specialArrangements"
+                            value="Other arrangements"
+                        >
+                        Other arrangements
+                    </label>
                 </div>
 
-            </aside>
+                <div class="event-field" style="margin-top: 16px;">
+                    <label for="arrangementDescription">
+                        Describe your additional requirements *
+                    </label>
 
+                    <textarea
+                        id="arrangementDescription"
+                        name="arrangementDescription"
+                        placeholder="Explain what you need and any details the venue team should know."
+                    ></textarea>
+                </div>
+            </fieldset>
         </div>
 
-        <div class="event-form-actions" style="margin-top: 24px;">
-            <button class="button button-outline" type="button" id="saveDraft">Save draft</button>
-            <button class="button" type="submit" id="submitBooking">Submit booking request</button>
-            <p id="formMessage" role="status" aria-live="polite"></p>
+        <div class="event-field full-width">
+            <label for="specialRequests">
+                Accessibility or special requests
+            </label>
+            <textarea
+                id="specialRequests"
+                name="specialRequests"
+                placeholder="Tell us about any accessibility or special requirements"
+            ></textarea>
+            <small>
+                The venue team will confirm your requests before the event.
+            </small>
         </div>
 
-    </form>
+    </div>
+</section>
 
+</div>
+
+<!-- Booking summary -->
+<aside>
+    <section class="booking-summary-card">
+        <h2>Booking summary</h2>
+
+        <span class="summary-status">Not yet confirmed</span>
+
+        <h3 class="summary-hall">Sahyadri Community Hall</h3>
+
+        <p class="summary-details">
+            Kothrud · Pune<br>
+            Event date and time are selected from availability.
+        </p>
+
+        <span class="summary-label">Estimated pricing</span>
+
+        <div class="summary-row">
+            <span id="rentalLabel">Hall rental</span>
+            <span id="rentalAmount">₹0</span>
+        </div>
+
+        <div class="summary-row">
+            <span>Facilities</span>
+            <span id="facilityAmount">₹800</span>
+        </div>
+
+        <div class="summary-row">
+            <span>Cleaning fee</span>
+            <span>₹400</span>
+        </div>
+
+        <div class="summary-row">
+            <span id="taxLabel">Tax · 18%</span>
+            <span id="taxAmount">₹0</span>
+        </div>
+
+        <div class="summary-row">
+            <span>Refundable security deposit</span>
+            <span>₹2,000</span>
+        </div>
+
+        <hr class="summary-divider">
+
+        <div class="summary-row summary-total">
+            <span>Estimated total</span>
+            <span id="estimatedTotal">₹0</span>
+        </div>
+
+        <p class="summary-note">
+            Deposit returned within 7 working days after inspection.
+            No tax charged on the refundable deposit.
+        </p>
+
+        <button
+            class="button button-outline"
+            type="button"
+            id="openEstimate"
+            style="width:100%; margin-top:14px;"
+        >
+            Open detailed estimate
+        </button>
+    </section>
+
+    <div class="transparent-pricing">
+        <strong>Transparent pricing</strong>
+        <p id="pricingNote">
+            Your estimate updates when you select facilities.
+        </p>
+    </div>
+</aside>
+
+</div>
+
+<div class="form-actions" style="margin-top: 24px;">
+    <button class="button button-outline" type="button" id="saveDraft">
+        Save draft
+    </button>
+
+    <button class="button" type="submit" id="submitBooking">
+        Submit booking request
+    </button>
+
+    <p id="formMessage" role="status" aria-live="polite"></p>
+</div>
+
+</form>
 </main>
 
 <footer class="site-footer">
@@ -708,115 +692,104 @@
 </footer>
 
 <script>
-    // Read selected date and time from the Availability page URL
-const params = new URLSearchParams(window.location.search);
+    const form = document.getElementById("eventBookingForm");
 
-const selectedDate = params.get("date");
-const selectedTime = params.get("time");
+    const params = new URLSearchParams(window.location.search);
 
-const eventDateInput = document.getElementById("eventDate");
-const eventTimeInput = document.getElementById("eventTime");
-// Hybrid approval: enable additional arrangements only when Yes is selected
+    const eventDateInput = document.getElementById("eventDate");
+    const eventTimeInput = document.getElementById("eventTime");
 
-const standardRequirements = document.getElementById(
-    "standardRequirements"
-);
+    const standardRequirements = document.getElementById("standardRequirements");
+    const specialRequirements = document.getElementById("specialRequirements");
 
-const specialRequirements = document.getElementById(
-    "specialRequirements"
-);
-
-const specialArrangementsSection = document.getElementById(
-    "specialArrangementsSection"
-);
-
-const specialArrangementsFieldset = document.getElementById(
-    "specialArrangementsFieldset"
-);
-
-const arrangementDescription = document.getElementById(
-    "arrangementDescription"
-);
-
-function updateSpecialArrangements() {
-
-    const needsSpecialArrangements = specialRequirements.checked;
-
-    // Show or hide the additional arrangements section
-    specialArrangementsSection.hidden = !needsSpecialArrangements;
-
-    // Enable or disable all additional arrangement fields
-    specialArrangementsFieldset.disabled = !needsSpecialArrangements;
-
-    // Description is required only when Yes is selected
-    arrangementDescription.required = needsSpecialArrangements;
-
-    // Clear the extra requirements when No is selected
-    if (!needsSpecialArrangements) {
-
-        specialArrangementsFieldset
-            .querySelectorAll('input[type="checkbox"]')
-            .forEach(input => {
-                input.checked = false;
-            });
-
-        arrangementDescription.value = "";
-    }
-}
-
-// Listen for both radio options
-standardRequirements.addEventListener(
-    "change",
-    updateSpecialArrangements
-);
-
-specialRequirements.addEventListener(
-    "change",
-    updateSpecialArrangements
-);
-
-// Set the correct initial state when the page opens
-updateSpecialArrangements();
-// Automatically fill only date and time
-if (selectedDate && selectedTime) {
-    eventDateInput.value = selectedDate;
-
-    // Match the selected time with the form option
-    const matchingOption = Array.from(eventTimeInput.options).find(
-        option => option.value === selectedTime
+    const specialArrangementsSection = document.getElementById(
+        "specialArrangementsSection"
     );
 
-    if (matchingOption) {
-        eventTimeInput.value = selectedTime;
-    } else {
-        console.error("Selected time does not match a form option:", selectedTime);
+    const specialArrangementsFieldset = document.getElementById(
+        "specialArrangementsFieldset"
+    );
+
+    const arrangementDescription = document.getElementById(
+        "arrangementDescription"
+    );
+
+    const selectedSlotNotice = document.getElementById("selectedSlotNotice");
+
+    // Set the minimum booking date to today.
+    const today = new Date();
+    const todayString =
+        today.getFullYear() + "-" +
+        String(today.getMonth() + 1).padStart(2, "0") + "-" +
+        String(today.getDate()).padStart(2, "0");
+
+    eventDateInput.min = todayString;
+
+    // Read the selected date and time from the availability page.
+    const selectedDate = params.get("date");
+    const selectedTime = params.get("time");
+
+    if (selectedDate) {
+        eventDateInput.value = selectedDate;
     }
-} else {
-    console.error("Date or time was not received from Availability.");
-}
 
-// Update the selected date/time message
-const selectedSlotNotice = document.getElementById("selectedSlotNotice");
+    if (selectedTime) {
+        const matchingOption = Array.from(eventTimeInput.options).find(
+            option => option.value === selectedTime
+        );
 
-function updateSelectedSlotNotice() {
-    if (eventDateInput.value && eventTimeInput.value) {
-        selectedSlotNotice.textContent =
-            "Selected slot: " +
-            eventDateInput.value +
-            " · " +
-            eventTimeInput.value;
-    } else {
-        selectedSlotNotice.textContent =
-            "Choose your event date and time.";
+        if (matchingOption) {
+            eventTimeInput.value = selectedTime;
+        }
     }
-}
 
-updateSelectedSlotNotice();
+    // Show extra-arrangement fields only when Yes is selected.
+    function updateSpecialArrangements() {
+        const needsSpecialArrangements = specialRequirements.checked;
+
+        specialArrangementsSection.hidden = !needsSpecialArrangements;
+        specialArrangementsFieldset.disabled = !needsSpecialArrangements;
+        arrangementDescription.required = needsSpecialArrangements;
+
+        if (!needsSpecialArrangements) {
+            specialArrangementsFieldset
+                .querySelectorAll('input[type="checkbox"]')
+                .forEach(input => {
+                    input.checked = false;
+                });
+
+            arrangementDescription.value = "";
+        }
+    }
+
+    standardRequirements.addEventListener(
+        "change",
+        updateSpecialArrangements
+    );
+
+    specialRequirements.addEventListener(
+        "change",
+        updateSpecialArrangements
+    );
+
+    // Update selected date and time message.
+    function updateSelectedSlotNotice() {
+        if (eventDateInput.value && eventTimeInput.value) {
+            selectedSlotNotice.textContent =
+                "Selected slot: " +
+                eventDateInput.value +
+                " · " +
+                eventTimeInput.value;
+        } else {
+            selectedSlotNotice.textContent =
+                "Choose your event date and time.";
+        }
+    }
 
     eventDateInput.addEventListener("change", updateSelectedSlotNotice);
     eventTimeInput.addEventListener("change", updateSelectedSlotNotice);
 
-    // Sample pricing for Sahyadri Community Hall.
+    // Demo pricing.
     const hourlyRate = 1500;
     const cleaningFee = 400;
     const projectorFee = 800;
@@ -846,7 +819,7 @@ updateSelectedSlotNotice();
         }).format(amount);
     }
 
-    function updateEstimate() {
+    function calculateEstimate() {
         const duration = getDuration();
         const rental = hourlyRate * duration;
 
@@ -866,29 +839,43 @@ updateSelectedSlotNotice();
         const tax = subtotal * taxRate;
         const total = subtotal + tax + deposit;
 
+        return {
+            duration,
+            rental,
+            facilities,
+            subtotal,
+            tax,
+            total,
+            deposit
+        };
+    }
+
+    function updateEstimate() {
+        const estimate = calculateEstimate();
+
         document.getElementById("rentalLabel").textContent =
-            "Hall rental · " + duration + " hours";
+            "Hall rental · " + estimate.duration + " hours";
 
         document.getElementById("rentalAmount").textContent =
-            money(rental);
+            money(estimate.rental);
 
         document.getElementById("facilityAmount").textContent =
-            money(facilities);
+            money(estimate.facilities);
 
         document.getElementById("taxLabel").textContent =
-            "Tax · 18% on " + money(subtotal);
+            "Tax · 18% on " + money(estimate.subtotal);
 
         document.getElementById("taxAmount").textContent =
-            money(tax);
+            money(estimate.tax);
 
         document.getElementById("estimatedTotal").textContent =
-            money(total);
+            money(estimate.total);
 
         document.getElementById("pricingNote").textContent =
-            money(total) + " is an estimate, including " +
-            money(deposit) + " refundable deposit. Final charges " +
-            "will be confirmed by the venue team.";
-        
+            money(estimate.total) +
+            " is an estimate, including " +
+            money(estimate.deposit) +
+            " refundable deposit. Final charges will be confirmed by the venue team.";
     }
 
     document.querySelectorAll('input[name="facilities"]').forEach(input => {
@@ -897,51 +884,68 @@ updateSelectedSlotNotice();
 
     eventTimeInput.addEventListener("change", updateEstimate);
 
+    // Open detailed estimate page.
+    document.getElementById("openEstimate").addEventListener("click", () => {
+        const date = eventDateInput.value;
+        const time = eventTimeInput.value;
+
+        const estimateParams = new URLSearchParams();
+
+        if (date) estimateParams.set("date", date);
+        if (time) estimateParams.set("time", time);
+
+        window.location.href =
+            "detailed-estimate.html?" + estimateParams.toString();
+    });
+
+    // Restore a saved draft.
+    const savedDraft = localStorage.getItem("civicSpace_booking_draft");
+
+    if (savedDraft) {
+        try {
+            const draft = JSON.parse(savedDraft);
+
+            Object.entries(draft).forEach(([name, value]) => {
+                form.querySelectorAll(`[name="${name}"]`).forEach(field => {
+                    if (field.type === "checkbox") {
+                        field.checked = Array.isArray(value)
+                            ? value.includes(field.value)
+                            : value === field.value;
+                    } else if (field.type === "radio") {
+                        field.checked = value === field.value;
+                    } else {
+                        field.value = value;
+                    }
+                });
+            });
+        } catch (error) {
+            console.error("Could not restore saved booking draft.");
+        }
+    }
+
+    updateSpecialArrangements();
+    updateSelectedSlotNotice();
     updateEstimate();
 
-document.getElementById("openEstimate").addEventListener("click", () => {
-    const date = document.getElementById("eventDate").value;
-    const time = document.getElementById("eventTime").value;
-
-    const params = new URLSearchParams();
-
-    if (date) params.set("date", date);
-    if (time) params.set("time", time);
-
-    window.location.href =
-        "detailed-estimate.html?" + params.toString();
-});
-    // Restore saved draft when the page opens
-const savedDraft = localStorage.getItem("civicSpace_booking_draft");
-if (savedDraft) {
-    try {
-        const draft = JSON.parse(savedDraft);
-        const form = document.getElementById("eventBookingForm");
-        Object.entries(draft).forEach(([name, value]) => {
-            form.querySelectorAll(`[name="${name}"]`).forEach(field => {
-                if (field.type === "checkbox") {
-                    field.checked = Array.isArray(value) ? value.includes(field.value) : value === field.value;
-                } else if (field.type === "radio") {
-                    field.checked = value === field.value;
-                } else {
-                    field.value = value;
-                }
-            });
-        });
-        updateSpecialArrangements();
-        updateSelectedSlotNotice();
-        updateEstimate();
-    } catch (error) {
-        console.error("Could not restore saved booking draft:", error);
-    }
-}
-
-// Demo draft: stores the form values in this browser.
+    // Save the form in this browser only.
     document.getElementById("saveDraft").addEventListener("click", () => {
-        const form = document.getElementById("eventBookingForm");
-        const draft = Object.fromEntries(new FormData(form).entries());
+        const draft = {};
 
-        draft.requiresSpecialArrangements = specialRequirements.checked ? "yes" : "no";
+        new FormData(form).forEach((value, name) => {
+            if (draft[name] !== undefined) {
+                if (!Array.isArray(draft[name])) {
+                    draft[name] = [draft[name]];
+                }
+
+                draft[name].push(value);
+            } else {
+                draft[name] = value;
+            }
+        });
+
+        draft.requiresSpecialArrangements =
+            specialRequirements.checked ? "yes" : "no";
+
         draft.specialArrangements = Array.from(
             form.querySelectorAll('input[name="specialArrangements"]:checked')
         ).map(input => input.value);
@@ -959,46 +963,95 @@ if (savedDraft) {
             "Draft saved in this browser.";
     });
 
-    // Demo submit: does not create a real booking or request payment.
-    document.getElementById("eventBookingForm").addEventListener("submit", event => {
+    // Submit booking: frontend demo only.
+    form.addEventListener("submit", event => {
         event.preventDefault();
-
-        const form = event.currentTarget;
 
         if (!form.reportValidity()) {
             return;
         }
 
-        const bookingRequest = Object.fromEntries(
-            new FormData(form).entries()
-        );
+        const formData = new FormData(form);
+        const bookingRequest = {};
+
+        formData.forEach((value, name) => {
+            if (bookingRequest[name] !== undefined) {
+                if (!Array.isArray(bookingRequest[name])) {
+                    bookingRequest[name] = [bookingRequest[name]];
+                }
+
+                bookingRequest[name].push(value);
+            } else {
+                bookingRequest[name] = value;
+            }
+        });
 
         bookingRequest.facilities = Array.from(
             document.querySelectorAll('input[name="facilities"]:checked')
         ).map(input => input.value);
 
         bookingRequest.specialArrangements = Array.from(
-            form.querySelectorAll('input[name="specialArrangements"]:checked')
+            document.querySelectorAll('input[name="specialArrangements"]:checked')
         ).map(input => input.value);
-        bookingRequest.requiresSpecialArrangements = specialRequirements.checked ? "yes" : "no";
-        bookingRequest.arrangementDescription = arrangementDescription.value;
-        bookingRequest.estimatedTotal =
-            document.getElementById("estimatedTotal").textContent;
 
-        bookingRequest.status = "Pending venue review";
+        const estimate = calculateEstimate();
 
+        bookingRequest.estimatedTotal = money(estimate.total);
+        bookingRequest.bookingId = "CS-" + Date.now();
+        bookingRequest.submittedAt = new Date().toISOString();
+
+        bookingRequest.requiresSpecialArrangements =
+            specialRequirements.checked ? "yes" : "no";
+
+        // Standard requests go to payment in this frontend demo.
+        if (bookingRequest.requiresSpecialArrangements === "no") {
+            bookingRequest.status = "Approved - Payment pending";
+            bookingRequest.paymentStatus = "Unpaid";
+        } else {
+            // Requests with extra arrangements wait for admin review.
+            bookingRequest.status = "Pending venue review";
+            bookingRequest.paymentStatus = "Not available";
+        }
+
+        // Save the current booking request.
         localStorage.setItem(
             "civicSpace_booking_request",
             JSON.stringify(bookingRequest)
         );
 
-        document.getElementById("formMessage").textContent =
-            "Demo request saved. No real booking or payment has been made.";
+        // Add this booking to the user's demo booking history.
+        let bookingHistory = [];
 
-        alert(
-            "Your demo booking request has been saved. " +
-            "The venue would review it before confirmation."
+        try {
+            bookingHistory = JSON.parse(
+                localStorage.getItem("civicSpace_booking_history") || "[]"
+            );
+
+            if (!Array.isArray(bookingHistory)) {
+                bookingHistory = [];
+            }
+        } catch (error) {
+            bookingHistory = [];
+        }
+
+        bookingHistory.unshift(bookingRequest);
+
+        localStorage.setItem(
+            "civicSpace_booking_history",
+            JSON.stringify(bookingHistory)
         );
+
+        // Remove the saved draft after successful submission.
+        localStorage.removeItem("civicSpace_booking_draft");
+
+        // Redirect based on the additional-arrangements choice.
+        if (bookingRequest.requiresSpecialArrangements === "yes") {
+            alert("Your request has been submitted for venue review.");
+            window.location.href = "my-bookings.html";
+        } else {
+            alert("Your standard booking is approved in this demo. Continue to payment.");
+            window.location.href = "payment.html";
+        }
     });
 </script>
 
