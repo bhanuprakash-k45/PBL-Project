@@ -42,18 +42,11 @@ button {
 }
 
 .navbar {
-    background: white;
-    border-bottom: 1px solid var(--border);
+    height:88px;background:#fff;border-bottom:1px solid #e4ebf2
 }
 
 .nav-inner {
-    max-width: 1450px;
-    margin: auto;
-    padding: 24px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 25px;
+    width:min(1312px,calc(100% - 64px));height:100%;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:28px
 }
 
 .brand {
@@ -61,14 +54,14 @@ button {
     align-items: center;
     gap: 12px;
     color: var(--blue);
-    font-size: 26px;
+    font-size: 19px;
     font-weight: bold;
     text-decoration: none;
 }
 
 .brand-icon {
-    width: 42px;
-    height: 42px;
+    width: 32px;
+    height: 36px;
     border-radius: 11px;
     background: var(--green);
     color: white;
@@ -603,7 +596,7 @@ footer {
 
 <header class="navbar">
     <div class="nav-inner">
-        <a class="brand" href="index.html">
+        <a class="brand" href="../index.html">
             <span class="brand-icon">♜</span>
             <span>CivicSpace</span>
         </a>
@@ -630,7 +623,7 @@ footer {
 
     <div class="heading-row">
         <div>
-            <h1>Complete your approved booking</h1>
+            <h2>Complete your approved booking</h1>
             <p class="subtitle" id="referenceLine">
                 Reference CS-2026-1121 · Approved booking · Before payment
             </p>
