@@ -1,0 +1,441 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicSpace - Admin Review</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 30px;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #263247;
+        }
+
+        .page {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #68758a;
+            margin-bottom: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .details {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .detail-label {
+            font-size: 13px;
+            color: #758197;
+            margin-bottom: 5px;
+        }
+
+        .detail-value {
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #fff4d6;
+            color: #8a5b00;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .status.approved {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.rejected {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .status.pending {
+            background: #fff4d6;
+            color: #8a5b00;
+        }
+
+        .arrangements {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: 0;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .approve {
+            background: #15803d;
+            color: white;
+        }
+
+        .reject {
+            background: #dc2626;
+            color: white;
+        }
+
+        button:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .empty {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <h1>CivicSpace Admin Review</h1>
+    <p class="subtitle">
+        Review community hall booking requests.
+    </p>
+
+    <div id="bookingContainer"></div>
+
+</div>
+
+<script>
+    const bookingContainer = document.getElementById("bookingContainer");
+
+    // Read the booking submitted from the booking form
+    function getBooking() {
+        const savedBooking = localStorage.getItem(
+            "civicSpace_booking_request"
+        );
+
+        if (!savedBooking) {
+            return null;
+        }
+
+        try {
+            return JSON.parse(savedBooking);
+        } catch (error) {
+            console.error("Invalid booking data:", error);
+            return null;
+        }
+    }
+
+    function displayValue(value) {
+        return value || "Not provided";
+    }
+
+    function renderBooking() {
+
+        const booking = getBooking();
+
+        // No booking submitted yet
+        if (!booking) {
+            bookingContainer.innerHTML = `
+                <div class="empty">
+                    <h2>No booking requests found</h2>
+                    <p>Submit a booking request from the booking form first.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const needsSpecialArrangements =
+            booking.requiresSpecialArrangements === "yes";
+
+        const status = booking.status || "Pending venue review";
+
+        const isApproved =
+            status === "Approved - Payment pending";
+
+        const isRejected =
+            status === "Rejected";
+
+        const isPending =
+            !isApproved && !isRejected;
+
+        const statusClass = isApproved
+            ? "approved"
+            : isRejected
+                ? "rejected"
+                : "pending";
+
+        const arrangements = Array.isArray(booking.specialArrangements)
+            ? booking.specialArrangements
+            : booking.specialArrangements
+                ? [booking.specialArrangements]
+                : [];
+
+        bookingContainer.innerHTML = `
+
+            <section class="card">
+
+                <h2>Booking request</h2>
+
+                <span class="status ${statusClass}">
+                    ${status}
+                </span>
+
+                <div class="details" style="margin-top: 25px;">
+
+                    <div>
+                        <div class="detail-label">Event name</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.eventName)}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-label">Event type</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.eventType)}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-label">Organiser</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.organiserName)}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-label">Phone number</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.phoneNumber)}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-label">Email</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.emailAddress)}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-label">Event date</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.eventDate)}
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="detail-label">Time slot</div>
+                        <div class="detail-value">
+                            ${displayValue(booking.eventTime)}
+                        </div>
+                    </div>
+
+            <div>
+                <div class="detail-label">Expected guests</div>
+                <div class="detail-value">
+                    ${displayValue(booking.guestCount)}
+                </div>
+            </div>
+
+            <div>
+                <div class="detail-label">Estimated total</div>
+                <div class="detail-value">
+                    ${displayValue(booking.estimatedTotal)}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="arrangements">
+
+            <h3>Additional arrangements</h3>
+
+            <p>
+                <strong>Requested:</strong>
+                ${needsSpecialArrangements ? "Yes" : "No"}
+            </p>
+
+            ${
+                needsSpecialArrangements
+                ? `
+                    <p>
+                        <strong>Requirements:</strong>
+                        ${displayValue(arrangements.join(", "))}
+                    </p>
+
+                    <p>
+                        <strong>Description:</strong>
+                        ${displayValue(booking.arrangementDescription)}
+                    </p>
+                `
+                : `
+                    <p>Standard hall facilities are sufficient.</p>
+                `
+            }
+
+        </div>
+
+        <div class="actions">
+
+            <button
+                type="button"
+                class="approve"
+                id="approveBooking"
+                ${!isPending || !needsSpecialArrangements ? "disabled" : ""}
+            >
+                Approve request
+            </button>
+
+            <button
+                type="button"
+                class="reject"
+                id="rejectBooking"
+                ${!isPending || !needsSpecialArrangements ? "disabled" : ""}
+            >
+                Reject request
+            </button>
+
+        </div>
+
+        </section>
+        `;
+
+        // Approve booking
+        document.getElementById("approveBooking")
+            .addEventListener("click", () => {
+
+                const latestBooking = getBooking();
+
+                if (!latestBooking) {
+                    return;
+                }
+
+                if (
+                    latestBooking.status === "Approved - Payment pending" ||
+                    latestBooking.status === "Rejected"
+                ) {
+                    return;
+                }
+
+                const confirmed = confirm(
+                    "Approve this booking request? " +
+                    "Payment will still be required."
+                );
+
+                if (!confirmed) {
+                    return;
+                }
+
+                latestBooking.status = "Approved - Payment pending";
+
+                latestBooking.adminDecision = "Approved";
+
+                latestBooking.paymentStatus = "Unpaid";
+
+                latestBooking.adminDecisionDate =
+                    new Date().toISOString();
+
+                localStorage.setItem(
+                    "civicSpace_booking_request",
+                    JSON.stringify(latestBooking)
+                );
+
+                renderBooking();
+            });
+
+        // Reject booking
+        document.getElementById("rejectBooking")
+            .addEventListener("click", () => {
+
+                const latestBooking = getBooking();
+
+                if (!latestBooking) {
+                    return;
+                }
+
+                if (
+                    latestBooking.status === "Approved - Payment pending" ||
+                    latestBooking.status === "Rejected"
+                ) {
+                    return;
+                }
+
+                const confirmed = confirm(
+                    "Are you sure you want to reject this booking?"
+                );
+
+                if (!confirmed) {
+                    return;
+                }
+
+                latestBooking.status = "Rejected";
+
+                latestBooking.adminDecision = "Rejected";
+
+                latestBooking.paymentStatus = "Not available";
+
+                latestBooking.adminDecisionDate =
+                    new Date().toISOString();
+
+                localStorage.setItem(
+                    "civicSpace_booking_request",
+                    JSON.stringify(latestBooking)
+                );
+
+                renderBooking();
+            });
+    }
+
+    renderBooking();
+</script>
+
+</body>
+</html>

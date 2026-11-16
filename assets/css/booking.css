@@ -1,7 +1,7 @@
 /* Check Availability page */
 
 .booking-header {
-    min-height: 100px;
+    min-height: 88px;
     background: #ffffff;
     border-bottom: 1px solid #d9e2ec;
     padding: 20px 4.7%;
@@ -12,18 +12,12 @@
 }
 
 .booking-logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #163b65;
-    font-size: 27px;
-    font-weight: 700;
-    text-decoration: none;
+    display:inline-flex;align-items:center;gap:9px;color:var(--navy);font-size:18px;font-weight:750;white-space:nowrap
 }
 
 .logo-icon {
-    width: 42px;
-    height: 42px;
+    width: 29px;
+    height: 29px;
     background: #16866a;
     color: white;
     border-radius: 10px;
@@ -32,8 +26,7 @@
 }
 
 .booking-header nav {
-    display: flex;
-    gap: 30px;
+    display:flex;gap:14px;flex-wrap:wrap
 }
 
 .booking-header nav a {
