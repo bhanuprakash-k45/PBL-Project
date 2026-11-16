@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitation generated | CivicSpace</title>
+<style>
+:root{--navy:#173f6b;--green:#168b70;--green-dark:#08775e;--bg:#f1f5f9;--muted:#627991;--line:#d8e3ee;--pale:#eaf2fa;--success:#e8f5ef;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#203954;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5}
+a{color:inherit;text-decoration:none}
+.topbar{height:98px;background:#fff;border-bottom:1px solid #e1e8f0;display:flex;align-items:center;justify-content:space-between;padding:0 4.6%;gap:24px}
+.brand{display:flex;align-items:center;gap:12px;font-size:26px;font-weight:700;color:var(--navy)}
+.brand-mark{width:40px;height:40px;border-radius:10px;background:var(--green);display:grid;place-items:center;color:#fff}
+.nav{display:flex;align-items:center;gap:34px;color:#263d57}
+.nav a:first-child{color:var(--green);font-weight:700}
+.top-actions{display:flex;align-items:center;gap:16px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--navy);font-weight:600;padding:13px 20px;font-size:15px;cursor:pointer;min-height:48px}
+.btn.primary{background:var(--green);border-color:var(--green);color:#fff}
+.btn.primary:hover{background:var(--green-dark)}
+.avatar{width:40px;height:40px;border-radius:50%;background:#edf3fa;color:var(--navy);display:grid;place-items:center;font-weight:700;font-size:12px}
+main{max-width:1650px;margin:0 auto;padding:34px 4.6% 48px}
+.breadcrumb{display:flex;gap:14px;align-items:center;color:var(--muted);margin-bottom:32px}
+.breadcrumb strong{color:var(--navy);font-weight:600}
+.page-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:32px}
+.eyebrow{color:var(--green-dark);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.2px;margin-bottom:10px}
+h1{font-size:36px;line-height:1.2;color:var(--navy);margin:0 0 14px;font-weight:700}
+.subtitle{font-size:18px;color:var(--muted);margin:0}
+.success-banner{display:flex;align-items:center;gap:16px;background:#e9f5ef;border:1px solid #c8e6d7;border-radius:10px;padding:20px 24px;margin-bottom:32px;color:var(--green-dark)}
+.success-icon{font-size:26px;flex-shrink:0}
+.success-banner strong{display:block;font-size:17px;margin-bottom:3px}
+.success-banner p{margin:0;color:var(--muted)}
+.status{margin-left:auto;font-weight:600;font-size:14px;white-space:nowrap}
+.columns{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(420px,1fr);gap:32px;align-items:start}
+.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;margin-bottom:28px}
+.invitation-panel{background:#eaf2fa;border:1px solid #d7e4f0;border-radius:18px;padding:28px}
+.card-title-row{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:24px}
+h2{font-size:25px;line-height:1.3;margin:0;color:var(--navy)}
+h3{font-size:19px;margin:0 0 16px;color:#203954}
+.invite-card{max-width:650px;margin:0 auto;background:#fff;border:1px solid #dce5ef;border-top:6px solid var(--green);border-radius:18px;overflow:hidden;padding:28px;text-align:center}
+.invite-brand{display:flex;justify-content:center;align-items:center;gap:12px;color:var(--navy);font-size:23px;font-weight:700;margin-bottom:26px}
+.invite-brand .brand-mark{width:38px;height:38px}
+.invite-label{font-size:12px;color:var(--green);font-weight:700;margin-bottom:10px}
+.invite-title{font-size:31px;color:var(--navy);margin:0 0 8px;line-height:1.25}
+.host{color:var(--muted);margin:0 0 24px}
+.venue-photo{width:100%;height:270px;object-fit:cover;border-radius:12px;background:#e2eaf2;margin-bottom:22px}
+.invite-message{font-size:17px;line-height:1.6;margin:0 0 22px}
+.event-time{display:grid;grid-template-columns:1fr 1fr;gap:16px;background:var(--pale);padding:20px;border-radius:12px;text-align:left;margin-bottom:22px}
+.time-label{color:var(--muted);font-size:13px;margin:4px 0}
+.time-value{font-weight:700;color:var(--navy)}
+.venue-name{font-size:20px;font-weight:700;color:var(--navy);margin:0 0 5px}
+.venue-address{color:var(--muted);margin:0 0 8px}
+.directions{color:var(--green-dark);font-weight:700}
+.guest-note{border-top:1px solid var(--line);margin-top:24px;padding-top:20px;text-align:left}
+.guest-note strong{display:block;margin-bottom:8px}
+.guest-note p{margin:0;color:var(--muted)}
+.invite-footer{color:var(--muted);font-size:13px;margin:20px 0 0}
+.qr-intro{color:var(--muted);margin:0 0 22px}
+.qr-box{background:#f1f5f9;border-radius:16px;padding:24px;text-align:center;margin-bottom:24px}
+#qrImage{width:280px;height:280px;max-width:100%;object-fit:contain;background:#fff;border-radius:14px;padding:12px}
+.qr-caption{font-size:14px;color:var(--muted);margin:12px 0 0}
+.qr-event{font-size:20px;font-weight:700;color:var(--navy);margin:0 0 5px;text-align:center}
+.qr-date{text-align:center;color:var(--muted);margin:0 0 22px}
+.full{width:100%;margin-bottom:12px}
+.notice{display:flex;gap:12px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:15px}
+.notice-icon{color:var(--green);font-size:20px}
+.share-card h2{margin-bottom:22px}
+.field-label{display:block;font-weight:600;margin-bottom:8px}
+.share-link{display:flex;align-items:center;gap:12px;background:#f1f5f9;border:1px solid var(--line);border-radius:10px;padding:14px 16px;overflow-wrap:anywhere;color:var(--green-dark)}
+.helper{font-size:14px;color:var(--muted);margin:8px 0 20px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.actions .full{grid-column:1/-1;margin:0}
+footer{color:var(--muted);font-size:14px;padding:0 4.6%;margin:0 auto 28px;max-width:1650px}
+@media(max-width:1050px){.columns{grid-template-columns:1fr}.nav{display:none}.page-head{align-items:flex-start}.topbar{height:78px}main{padding-top:26px}}
+@media(max-width:650px){body{font-size:15px}.topbar{padding:0 18px}.brand{font-size:21px}.top-actions .btn{padding:10px 12px;font-size:13px}main{padding:22px 16px 32px}.breadcrumb{font-size:13px;flex-wrap:wrap;margin-bottom:22px}.page-head{display:block}.page-head>.btn{margin-top:18px}h1{font-size:29px}.subtitle{font-size:16px}.success-banner{padding:16px;align-items:flex-start}.status{display:none}.card,.invitation-panel{padding:18px;border-radius:14px}.card-title-row{align-items:flex-start;flex-direction:column}.invite-card{padding:18px}.invite-title{font-size:25px}.venue-photo{height:190px}.event-time{padding:14px;gap:10px}.qr-box{padding:16px}#qrImage{width:230px;height:230px}.actions{grid-template-columns:1fr}.actions .full{grid-column:auto}footer{padding:0 16px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">▤</span><span>CivicSpace</span></a>
+  <nav class="nav" aria-label="Main navigation"><a href="find-hall.html">Find a hall</a><a href="how-it-works.html">How it works</a><a href="smart-finder.html">Smart finder</a><a href="help.html">Help</a></nav>
+  <div class="top-actions"><a class="btn" href="my-bookings.html">My dashboard</a><span class="avatar">AD</span></div>
+</header>
+<main>
+  <div class="breadcrumb"><a href="my-bookings.html">My bookings</a><span>›</span><span id="crumbRef">CS-2026-1121</span><span>›</span><strong>Invitation generated</strong></div>
+  <div class="page-head">
+    <div><div class="eyebrow">Smart event invitation &amp; QR generator</div><h1>Your invitation is ready</h1><p class="subtitle">Bring your guests together with one invitation, a shareable link and venue directions.</p></div>
+    <a class="btn" id="backBooking" href="my-bookings.html">← &nbsp; Back to Booking</a>
+  </div>
+  <section class="success-banner" aria-live="polite"><span class="success-icon">ⓥ</span><div><strong id="generatedTitle">Invitation generated for your event</strong><p id="generatedMeta">Confirmed booking · Event date and time</p></div><span class="status">Generated</span></section>
+  <div class="columns">
+    <section class="invitation-panel">
+      <div class="card-title-row"><h2>Your event invitation</h2><a class="btn" id="editInvitation" href="create-invitation.html">✎ &nbsp; Edit invitation</a></div>
+      <article class="invite-card">
+        <div class="invite-brand"><span class="brand-mark">▤</span><span>CivicSpace</span></div>
+        <div class="invite-label">YOU'RE INVITED</div>
+        <h2 class="invite-title" id="eventTitle">Community Skills Workshop</h2>
+        <p class="host">Hosted by <span id="hostName">Your host</span></p>
+        <img class="venue-photo" id="hallImage" alt="Community hall interior" src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1200&q=80">
+        <p class="invite-message" id="inviteMessage">Join us for a wonderful event. We look forward to welcoming you!</p>
+        <div class="event-time"><div><span>▦</span><p class="time-label">Date</p><div class="time-value" id="eventDate">Date to be confirmed</div></div><div><span>◷</span><p class="time-label">Indian Standard Time</p><div class="time-value" id="eventTime">Time to be confirmed</div></div>
+        <p class="venue-name" id="hallName">Your booked hall</p><p class="venue-address" id="hallAddress">Venue address</p><a class="directions" id="directions" target="_blank" rel="noopener">Get directions ↗</a>
+        <div class="guest-note"><strong>A note for our guests</strong><p id="guestInstructions">Please arrive a little early for your event.</p></div>
+        <p class="invite-footer">Better spaces. Stronger communities.</p>
+      </article>
+      <p class="invite-footer">Your invitation includes the confirmed venue, schedule and guest instructions.</p>
+    </section>
+    <div>
+      <section class="card">
+        <h2 style="margin-bottom:8px">QR invitation</h2><p class="qr-intro">A simple way to share event details and help guests find the venue.</p>
+        <div class="qr-box"><img id="qrImage" alt="QR code for this event invitation"><p class="qr-caption" id="qrCaption">QR code for invitation details</p></div>
+        <p class="qr-event" id="qrEventName">Your event</p><p class="qr-date" id="qrEventDate">Event date and time</p>
+        <a class="btn full" id="downloadQr" download="civicspace-invitation-qr.png">⇩ &nbsp; Download QR</a>
+        <div class="notice"><span class="notice-icon">ⓘ</span><span>For invitation and directions sharing only. This is not a payment code or a venue-entry credential.</span></div>
+      </section>
+      <section class="card share-card">
+        <h2>Share with your guests</h2>
+        <label class="field-label">Shareable invitation link</label>
+        <div class="share-link"><span style="color:var(--green)">↗</span><span id="shareLinkText">Invitation link is being prepared</span></div>
+        <p class="helper" id="shareHelper">This is a local demo link. No invitation is published online.</p>
+        <div class="actions"><button class="btn" id="copyLink">▣ &nbsp; Copy link</button><button class="btn primary" id="shareInvitation">♧ &nbsp; Share invitation</button><button class="btn full" id="downloadInvitation">⇩ &nbsp; Download invitation</button></div>
+        <p class="helper" style="margin:14px 0 0">QR image: PNG · Invitation: HTML</p>
+      </section>
+    </div>
+  </div>
+</main>
+<footer>CivicSpace · Secure community booking services · Help &amp; support</footer>
+<script>
+(function(){
+ const read=(key)=>{try{return JSON.parse(localStorage.getItem(key)||"null")}catch(e){return null}};
+ const booking=read("civicSpace_booking_request")||read("civicSpace_booking")||{};
+ const history=read("civicSpace_booking_history")||[];
+ const invitation=read("civicSpace_invitation")||read("civicSpace_event_invitation")||{};
+ const data={...booking,...invitation};
+ const get=(...keys)=>{for(const k of keys){if(data[k]!==undefined&&data[k]!==null&&String(data[k]).trim()!=="")return data[k]}return ""};
+ const eventName=get("eventName","eventTitle","title")||"Community Skills Workshop";
+ const host=get("organiserName","organizerName","hostName","host")||"Your host";
+ const ref=get("reference","bookingReference","bookingId","id")||"CS-2026-1121";
+ const hall=get("hallName","hall","venueName")||"Sahyadri Community Hall";
+ const address=get("hallAddress","address","venueAddress")||"Kothrud, Pune";
+ const date=get("eventDate","date","bookingDate")||"Date to be confirmed";
+ const time=get("timeSlot","eventTime","time")||"Time to be confirmed";
+ const message=get("invitationMessage","shortMessage","message","welcomeMessage")||"Join us for a wonderful event. We look forward to welcoming you!";
+ const instructions=get("guestInstructions","guestNote","instructions")||"Please arrive a little early for your event.";
+ const guests=get("guestCount","guests","attendees");
+ const url=new URL("invite.html",window.location.href);url.searchParams.set("ref",ref);
+ const shareUrl=get("shareUrl","invitationUrl")||url.href;
+ document.getElementById("crumbRef").textContent=ref;
+ document.getElementById("generatedTitle").textContent="Invitation generated for "+eventName;
+ document.getElementById("generatedMeta").textContent=ref+" · Confirmed booking · "+date+" · "+time;
+ document.getElementById("eventTitle").textContent=eventName;document.getElementById("hostName").textContent=host;
+ document.getElementById("inviteMessage").textContent=message;document.getElementById("guestInstructions").textContent=instructions;
+ document.getElementById("eventDate").textContent=date;document.getElementById("eventTime").textContent=time;
+ document.getElementById("hallName").textContent=hall;document.getElementById("hallAddress").textContent=address;
+ document.getElementById("qrEventName").textContent=eventName;document.getElementById("qrEventDate").textContent=date+" · "+time;
+ document.getElementById("shareLinkText").textContent=shareUrl;
+ document.getElementById("backBooking").href="my-bookings.html?ref="+encodeURIComponent(ref);
+ document.getElementById("editInvitation").href="create-invitation.html?ref="+encodeURIComponent(ref);
+ document.getElementById("directions").href="https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(hall+" "+address);
+ // Encode invitation details into the QR, rather than a decorative/non-scannable image.
+ const qrPayload=JSON.stringify({type:"CivicSpace invitation",reference:ref,event:eventName,host:host,venue:hall,address:address,date:date,time:time,link:shareUrl});
+ const qrSrc="https://api.qrserver.com/v1/create-qr-code/?size=560x560&format=png&margin=12&data="+encodeURIComponent(qrPayload);
+ const qr=document.getElementById("qrImage");qr.src=qrSrc;qr.alt="Scannable QR code containing invitation details for "+eventName;
+ document.getElementById("qrCaption").textContent="Scannable invitation QR · "+ref;
+ document.getElementById("downloadQr").href=qrSrc;
+ document.getElementById("downloadQr").addEventListener("click",async function(e){
+   e.preventDefault();try{const response=await fetch(qrSrc);const blob=await response.blob();const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="civicspace-"+ref+"-qr.png";a.click();URL.revokeObjectURL(a.href)}catch(err){window.open(qrSrc,"_blank")}
+ });
+ document.getElementById("copyLink").addEventListener("click",async function(){try{await navigator.clipboard.writeText(shareUrl);this.textContent="✓ Copied"}catch(e){prompt("Copy this invitation link:",shareUrl)}});
+ document.getElementById("shareInvitation").addEventListener("click",async function(){if(navigator.share){try{await navigator.share({title:"You're invited: "+eventName,text:message,url:shareUrl})}catch(e){}}else{try{await navigator.clipboard.writeText(shareUrl);alert("Invitation link copied. Share it with your guests.")}catch(e){prompt("Share this invitation link:",shareUrl)}}});
+ document.getElementById("downloadInvitation").addEventListener("click",function(){
+   const card=document.querySelector(".invite-card").cloneNode(true);
+   const css="body{font-family:Arial,sans-serif;color:#203954;padding:24px}.invite-card{max-width:700px;margin:auto;border:1px solid #dce5ef;border-top:6px solid #168b70;border-radius:16px;padding:28px;text-align:center}.venue-photo{width:100%;max-height:300px;object-fit:cover}.invite-title{font-size:30px;color:#173f6b}.event-time{background:#eaf2fa;padding:18px;display:flex;justify-content:space-around}.guest-note{text-align:left;border-top:1px solid #d8e3ee;padding-top:15px}";
+   const doc="<!doctype html><html><head><meta charset='utf-8'><title>"+eventName+"</title><style>"+css+"</style></head><body>"+card.outerHTML+"</body></html>";
+   const blob=new Blob([doc],{type:"text/html"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="civicspace-invitation-"+ref+".html";a.click();URL.revokeObjectURL(a.href);
+ });
+})();
+</script>
+</body>
+</html>
