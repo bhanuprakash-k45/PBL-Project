@@ -481,51 +481,51 @@
       });
 
       // COMPARISON
-document.getElementById("add-to-comparison").addEventListener("click", () => {
-  const compareKey = "civicSpaceCompareHalls";
+      document.getElementById("add-to-comparison").addEventListener("click", () => {
+        const compareKey = "civicSpaceCompareHalls";
 
-  let comparison = [];
+        let comparison = [];
 
-  try {
-    comparison = JSON.parse(
-      sessionStorage.getItem(compareKey) || "[]"
-    );
-  } catch (error) {
-    comparison = [];
-  }
+        try {
+          comparison = JSON.parse(
+            sessionStorage.getItem(compareKey) || "[]"
+          );
+        } catch (error) {
+          comparison = [];
+        }
 
-  // Avoid adding the same hall twice.
-  if (!comparison.includes(hall.id)) {
-    if (comparison.length >= 3) {
-      document.getElementById("detail-action-message").textContent =
-        "You can compare up to 3 halls at a time.";
-      return;
-    }
+        // Avoid adding the same hall twice.
+        if (!comparison.includes(hall.id)) {
+          if (comparison.length >= 3) {
+            document.getElementById("detail-action-message").textContent =
+              "You can compare up to 3 halls at a time.";
+            return;
+          }
 
-    comparison.push(hall.id);
-  }
+          comparison.push(hall.id);
+        }
 
-  sessionStorage.setItem(
-    compareKey,
-    JSON.stringify(comparison)
-  );
+        sessionStorage.setItem(
+          compareKey,
+          JSON.stringify(comparison)
+        );
 
-  document.getElementById("detail-action-message").textContent =
-    `${hall.name} added to your comparison list.`;
+        document.getElementById("detail-action-message").textContent =
+          `${hall.name} added to your comparison list.`;
 
-  // Update the button's appearance.
-  const button = document.getElementById("add-to-comparison");
+        // Update the button's appearance.
+        const button = document.getElementById("add-to-comparison");
 
-  button.textContent = "Added to comparison";
-  button.classList.add("is-selected");
-  button.setAttribute("aria-pressed", "true");
-  const compareLink = document.getElementById("compare-shortlist-link");
+        button.textContent = "Added to comparison";
+        button.classList.add("is-selected");
+        button.setAttribute("aria-pressed", "true");
+        const compareLink = document.getElementById("compare-shortlist-link");
 
-  if (compareLink) {
-  compareLink.style.display = "inline-flex";
-  compareLink.textContent = `Compare shortlist (${comparison.length})`;
-}
-});
+        if (compareLink) {
+          compareLink.style.display = "inline-flex";
+          compareLink.textContent = `Compare shortlist (${comparison.length})`;
+        }
+      });
 
       // CHECK AVAILABILITY
       document.getElementById("detail-booking-form").addEventListener("submit", event => {
